@@ -2,42 +2,21 @@
 
 int main()
 {
-    int a{2};
-    a = 3.2;
-    a = 2.9;
-    a = -1;
+    int array[10];
+    int array2[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    int array3[10] = {1, 2, 3, 4};
 
-    unsigned int b{1};
-    b = -1;
+    int num = array3[3];
 
-    double c{9};
-    c = 2.7;
-    c = 0.3;
+    char String[7] = {'s', 't', 'r', 'i', 'n', 'g', '\0'};
+    char notString[6] = {'s', 't', 'r', 'i', 'n', 'g'};
 
-    bool flag{true};
-    flag = false;
-    flag = 2;
-    flag = 0;
+    char aString[] = "string";
+    char anotherOne[] = "notastring";
 
-    const int j{ 1 };
-    int const k{ 2 };
+    std::cout <<aString;
+    std::cout <<String;
 
-    int myInt{12};
-    long myLong = long(myInt);
-
-    char ch;
-    int i{65};
-    float f{6.5};
-    double dbl;
-
-    ch = static_cast<char>(i);
-    dbl = static_cast<float>(f);
-
-    int x{1};
-    int y = 3 / 2;
-
-    auto z = 3 / 2;
-    auto w = 3.0 / 2;
 
     return 0;
 }
