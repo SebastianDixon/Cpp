@@ -5,38 +5,22 @@ using namespace std;
 
 int main()
 {
-     for (int i = 0; i < 10; ++i)
-     {
-         cout << "the name of the monkey is:" << i << endl;
-     }
+    int base;
+    int power;
 
-     float x = 5.0;
-     while (x >0)
-     {
-         --x;
-     }
+    cout << "What is your base? :" << endl;
+    cin >> base;
+    int output = base;
 
-     string response;
-     cout << "repsonse is: " <<  '\n' << "Quit" << '\n' << "More" << endl;
-     cin >> response;
+    cout << "What is your exponent? :" << endl;
+    cin >> power;
 
-     while (response != "Quit")
-     {
-         cout << "Looping again" << endl;
-         cout << '\n';
-
-         cout << "repsonse is: " <<  '\n' << "Quit" << '\n' << "More" << endl;
-         cin >> response;
-     }
-
-     string ask;
-     do
-     {
-         cout << "enter :" << '\n' << "More or Quit" << endl;
-         cin >> ask;
-
-     } while (ask != "Quit");
-
-
-     return 0;
+    for(int count = power -1; count > 0; --count)
+    {
+        output *= base;
+        cout << output << endl;
+    }
+    cout << "Answer is: " << output << endl;
+    
+    return 0;
 }
