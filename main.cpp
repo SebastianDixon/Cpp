@@ -5,22 +5,27 @@ using namespace std;
 
 int main()
 {
-    int base;
-    int power;
+    char choice;
+    cout << "input your value (y, Y, n, N): " << endl;
+    cin >> choice;
 
-    cout << "What is your base? :" << endl;
-    cin >> base;
-    int output = base;
-
-    cout << "What is your exponent? :" << endl;
-    cin >> power;
-
-    for(int count = power -1; count > 0; --count)
+    switch (choice)
     {
-        output *= base;
-        cout << output << endl;
+        case 'y':
+            cout << "You chose y or Y" << endl;
+            break;
+        case 'Y' :
+            cout << "You chose y or Y" << endl;
+            break;
+        case 'n':
+            cout << "You chose n or N" << endl;
+            break;
+        case 'N':
+            cout << "You chose n or N" << endl;
+            break;
+        default:
+            cout << "You didn't choose a valid option" << endl;
+            break;
     }
-    cout << "Answer is: " << output << endl;
-    
-    return 0;
+
 }
