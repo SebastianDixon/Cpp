@@ -5,53 +5,38 @@ using namespace std;
 
 int main()
 {
-    char response{'y'};
-    if (response == 'y' || response == 'Y')
-    {
-        cout << "correct response" << endl;
-    }
+     for (int i = 0; i < 10; ++i)
+     {
+         cout << "the name of the monkey is:" << i << endl;
+     }
 
-    else if (response == 'n' || response == 'N')
-    {
-        cout << "incorrect response" << endl;
-    }
+     float x = 5.0;
+     while (x >0)
+     {
+         --x;
+     }
 
-    else
-    {
-        cout << "invalid input" << endl;
-    }
+     string response;
+     cout << "repsonse is: " <<  '\n' << "Quit" << '\n' << "More" << endl;
+     cin >> response;
 
-    int value = 1;
-    switch (value)
-    {
-        case '1':
-            cout<< "this is a one" << endl;
-            break;
-        case '2':
-            cout<< "this is a two not a one, wrong" << endl;
-            break;
-        case '4':
-            cout<< "this is 4, guess again, wrong" << endl;
-            break;
-        default:
-            cout<< "this is not a one, two or four"<< endl;
-            break;
-    }
+     while (response != "Quit")
+     {
+         cout << "Looping again" << endl;
+         cout << '\n';
 
-    int i = 2, j = 3;
-    cout << (i > j ? i : j) << " is greater" << endl;
+         cout << "repsonse is: " <<  '\n' << "Quit" << '\n' << "More" << endl;
+         cin >> response;
+     }
 
-    for(int x = 0; x<5; ++x)
-    {
-        cout << "x is this value:" + x << endl;
-    }
+     string ask;
+     do
+     {
+         cout << "enter :" << '\n' << "More or Quit" << endl;
+         cin >> ask;
 
-    int count = 0;
-    while (count<10)
-    {
-        count +=1;
-        cout << "the value of count is:" + count << endl;
-    }
+     } while (ask != "Quit");
 
-    return 0;
+
+     return 0;
 }

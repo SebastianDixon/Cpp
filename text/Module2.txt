@@ -1,0 +1,288 @@
+variables
+
+
+- a variable must have a data type, which is defined in its initialisation
+- a value can be assigned to the variable outside of its creation
+- the variable can be thought of as a named memory location
+- there are two most common ways of initialising a variable
+	- int myVar = 0;
+	- int yourVar{1};
+
+- variables cannot be initialised with numbers as their beginning character
+
+- specific names for variables cannot be used, e.g. long,  as they have other functional use in the language
+
+```
+int main()
+{
+    int a{2};
+    a = 3.2;
+    a = 2.9;
+    a = -1;
+
+    unsigned int b{1};
+    b = -1;
+
+    double c{9};
+    c = 2.7;
+    c = 0.3;
+
+    bool flag{true};
+    flag = false;
+    flag = 2;
+    flag = 0;
+    
+}
+```
+
+in this main method i created four different variables, 
+- the int or integer variable will truncate any values after the decimal point, this is not rounding
+	- therefore the 3.2 is 3
+	- the 2.9 is 2
+- the unsigned int only accepts positive integers, when passed a negative value it it given a massive positive value, 
+	- -1 is 4294967295
+- the double data type represents values with binary accuracy, this is twice as accurate as float, so is called double
+	- 2.7 is 2.666666666
+	- 0.3 is 0.2999999999
+- when creating a Boolean variable, if assigned the value of 0, this is represented by false, if anything but 0 it is true
+
+when these variables were assigned data types which weren't normal for them, this raises a warning, not an error
+the changing of these values is performed in the background, and could have been implemented with purpose
+
+constants
+
+
+- this is the same as the variable where it is a named memory location , however its value cannot change in the program run time
+
+- the word 'const' is used to define a constant
+
+- different to variables, the constant must have a value assigned to it at its initialisation
+
+due to the nature of being a constant value, the constant cannot be initialised with a variable type or other value which is going to change during the process of the program
+
+if the compiler finds the const value being changed, an error is raised
+
+- it is good programming practice to implement const instead of a variable data type where possible as it will ultimately make debugging easier
+
+```
+const int j{ 1 };
+int const k{ 2 };
+```
+
+these are two methods of making a constant, it doesnt matter to the compiler if the const term is before or after the data type specified
+
+type conversions
+
+
+- casting is known as the process of converting data types into one another, this often results in the loss of data however or is not possible at all
+
+```
+int myInt{12};
+long myLong;
+myLong = myInt;
+```
+
+- here it is seen that the integer myInt is created with a value of 12, a long variable myLong is also created
+- the value stored in the variable myInt is then also stored in the myLong variable, this is a casting operation known as the widening conversion as there is no loss of data
+
+this statement can also be shortened to:
+```
+int myInt{12};
+long myLong = long(myInt);
+```
+
+instead of this the casting operation can also be called which performs the same operation with multiple data types:
+```
+char ch;
+int i{65};
+float f{6.5};
+double dbl;
+
+ch = static_cast<char>(i);
+dbl = static_cast<float>(f);
+```
+
+- four different variables are initialised; char, int, float and double
+- the char variable, ch, is cast to the integer value 65 stored under i
+	- now the character data type stores the value 65
+
+- the double variable, dbl, is cast to the float value 6.5 stored under f
+	- now the double data type stores the value 6.5
+
+there was no loss of data in this cast operation, the casting between data types also prevents any warnings from the compiler as you have commanded this change explicitly
+
+```
+int x{1};
+int y = 3 / 2;
+
+auto z = 3 / 2;
+auto w = 3.0 / 2;
+```
+
+this code demonstrated different methods of producing the same integer variable
+- in the x example the curly braces method of initialising a variable is used
+- in the y example the equal sign of initialising a variable is used
+	- the 3/2 would normally return 1.5, however since this is not being able to be stored in the integer data type, it is truncated to a value of 1
+
+- in the z example the same initialisation method is used, however the int data type isnt specified, instead an 'auto' term is used 
+	- this is because the compiler is able to identify the data type of the data being input to the variable, and assign the variable that data type under the hood
+
+- another auto example using 3.0 instead, using the auto method the IDE automatically makes this w variable a double data type
+	- given this is a double data type , the 3/2 is operational and the w variable is actually able to store the 1.5 
+
+these different methods of initialising variables are all the same to the compiler, its just the way in which you would like to code it
+auto is useful when the data type name you are using in your code is a very long name
+
+arrays
+
+
+an array is referred to as a complex or compound data type
+
+arrays store one type of data, therefore there are integer, long or float arrays, but not multiple of different data types in the same array.
+this data is defined in its initialisation
+
+```
+int array[10];
+```
+
+this shows the initialisation of an array with an integer data type and ten different spaces avaliable, upon creation the contents of these ten spaces is arbitrary
+
+```
+int array2[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+int array3[10] = {1, 2, 3, 4};
+```
+
+the second array has been assigned its 10 values, the size was not specified, therefore it automatically becomes 10 given the number of elements
+the third array has been given a size of 10, and four elements input, the other six spaces are being represented by 0's
+
+```
+int num = array3[3];
+```
+
+this shows the initialisation of an integer 'num' with the value the fourth element in array3
+
+strings
+
+
+the method for storing strings in c++ uses backwards compatibility with the c implementation, where the strings is stored as an array of character, with a null character at the end, represented by \0
+
+this \0 is the ASCII code for 0 and is necessary for the compiler to understand where the string finishes seen here
+```
+char String[7] = {'s', 't', 'r', 'i', 'n', 'g', '\0'};
+char notString[6] = {'s', 't', 'r', 'i', 'n', 'g'};
+```
+
+a string can also be initialised in a different way
+```
+char aString[] = "string";
+char anotherOne[] = "notastring";
+```
+
+in this example the size of the array is inferred and doesn't need to be specified
+
+structures
+
+
+a structure is a data type which allows storage of multiple different data types under the name
+
+a structure is a user defined data type, unlike an array which stores the information input to it directly, the structure initialisation outlines the properties of this object, similar to a class, another instantiation of the structure must be made under another name then applying the properties of the structure
+
+upon initialising the struct object each data type must be defined along with it associated name in the structure
+
+```
+using namespace std;
+
+struct coffee
+    {
+        string name;
+        int strength;
+        double price;
+    };
+```
+here a structure called coffee has been created it has;
+- name, string data type
+- strength, int data type
+- price, double data type
+(the line, #include <string>, must be used to create 'string' data types)
+
+to add data to the structure under each name another line is necessary, similar to a variable, the contents of the newly made structure instance dont have to be declared immediately:
+```
+coffee cocoa = {"Cocoa truffle", 10, 0.47};
+
+coffee vanilla;
+vanilla.name = "vanilla eclair";
+vanilla.strength = 9;
+vanilla.price = 0.47;
+```
+
+as seen here the cocoa instantiation of the coffee structure has its attributes declared immediately, while the vanilla defines the afterwards
+
+unions
+
+
+a union is similar to a structure where it stores multiple variables of different data types,
+however, it can only store data on one of those variable at one time.
+
+therefore writing new information to a different variable in the union will remove the stored value in the previous variable.
+
+this is done so that more efficient use of memory can be made in systems with limited memory.
+
+```
+union aUnion
+    {
+        int intValue;
+        long longValue;
+        double doubleValue;
+    };
+```
+here I have initialised a union under the name aUnion
+
+an instantiation of the class is made called myUnion
+```
+aUnion myUnion;
+
+myUnion.intValue = 3;
+cout << myUnion.intValue << endl;
+
+myUnion.doubleValue = 4.5;
+cout << myUnion.doubleValue << endl;
+cout << myUnion.intValue; cout << endl;
+```
+
+in the output of this code the value 
+- 3 is output from intValue
+- 4.5 is output from doubleValue
+- 0 is output from intValue as the writing of 4.5 to doubleValue removed the value of 4 under intValue, then reading 0
+
+enumerations
+
+
+an enum is a of data type which defines its own contents in its creation. this prevents other pieces of data from being input to that enum object
+
+the enum is similar to variables and arrays where the data contained in the instance of the enum doesnt have to be defined immediately
+
+this is the instantiation of an enum type:
+```
+enum day {sunday, monday, tuesday, wednesday, thursday, friday, saturday}
+```
+
+enum values by default start at 0, so for 'day' the 0 value of this enum would be 'sunday'
+this default can be changed by changing the instantiation to so:
+```
+enum day {sunday = 1, monday, tuesday, wednesday, thursday, friday, saturday};
+```
+
+for this enumeration, creating a instance of the day can be done is two ways :
+```
+day noWork {saturday};
+
+day workStart;
+workStart = monday;
+```
+
+you would expect that outputting the 'noWork' would render the string 'saturday', however given the enum assigning of values, saturday repesents 6 in the day enumeration, therefore 6 is output
+```
+cout<< noWork << endl;
+```
+
+Internally, the constants in the enum are used as numbers and not as the textual representation you assign to them.
