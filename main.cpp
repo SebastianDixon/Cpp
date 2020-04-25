@@ -3,29 +3,22 @@
 
 using namespace std;
 
+int sum(int x, int y) //first sum function
+{
+    int val;
+    val = x + y;
+    cout << val << endl;
+    return x + y;
+}
+
+int sum(int x, int y, int z) //second sum function
+{
+    return x + y + z;
+}
+
+
 int main()
 {
-    char choice;
-    cout << "input your value (y, Y, n, N): " << endl;
-    cin >> choice;
-
-    switch (choice)
-    {
-        case 'y':
-            cout << "You chose y or Y" << endl;
-            break;
-        case 'Y' :
-            cout << "You chose y or Y" << endl;
-            break;
-        case 'n':
-            cout << "You chose n or N" << endl;
-            break;
-        case 'N':
-            cout << "You chose n or N" << endl;
-            break;
-        default:
-            cout << "You didn't choose a valid option" << endl;
-            break;
-    }
-
+    return sum(3, 4);
 }
+            

@@ -1,0 +1,42 @@
+functions
+
+
+functions are defined with a name, parameters and or a return type and the final body of code, the return statement is optional like python. the arguments passed in the functions definition may or may not be passed
+
+overloading a function referes the referencing multiple functions under the same name, for the sake of increased functionality, this is a more advanced feature though
+multiple functions may be defined under the same name, but have different arguments passed to them, therefore it is the job of the compiler to determine which parameters were passed to call the function, and accordingly choose which of the functions to return
+
+e.g. this example
+```
+int sum(int x, int y) //first sum function
+{
+    int val;
+    val = x + y;
+    cout << val << endl;
+    return x + y;
+}
+
+int sum(int x, int y, int z) //second sum function
+{
+    return x + y + z;
+}
+
+
+int main()
+{
+    return sum(3, 4);
+}
+
+```
+
+here the first sum function is called given it contains two arguments, and the main functions calls a sum function will two parameters
+if the return statement were to contain three integer parameters, the second would be called
+
+the functions storage class, return type, name, parameters are called it function prototype
+this function definition exists in the source code
+
+inline functions
+
+
+you preface the creation of an inline function by using the 'inline' keyword
+
