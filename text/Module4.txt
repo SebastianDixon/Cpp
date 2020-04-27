@@ -39,4 +39,29 @@ inline functions
 
 
 you preface the creation of an inline function by using the 'inline' keyword
+an inline functions is more efficient in the code, this is because it is more memory efficient, and does away with the typical calling of a function
+
+```
+inline void swap(int i, int j)
+{
+    int temp = i;
+    i = j;
+    j = temp;
+}
+int main()
+{
+    swap(3, 4);
+    return 0;
+}
+```
+
+here the inline function 'swap' has been made with initialised variables 'i' and 'j'
+
+the calling of this function in the main function is where the compiler simply places the code from the inline function using the arguments given
+
+- the compiler may ignore your request for the inline function and call it normally
+- use inline functions for small pieces of code, not huge operations
+
+
+
 
