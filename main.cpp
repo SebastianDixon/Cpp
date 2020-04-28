@@ -4,64 +4,57 @@
 using namespace std;
 
 
-
-class Player
+int pow(int base, int power)
 {
-public:
-    string name;
-    int health{};
-    int damage{};
+    int output = base;
 
-    void print()
+    if (power < 0)
     {
-        cout << name << " " << health<< " " << damage<< " " << '\n';
+        cout << "Positive exponent? :" << endl;
+        cin >> power;
+    }
+    else if (power == 0)
+    {
+        cout << "Answer is: 1" << endl;
+        return 1;
     }
 
-    void calc(int i, int j)
+    for(int count = power -1; count > 0; --count)
     {
-        auto result {i + j};
-
-        cout << result << endl;
+    output *= base;
     }
-};  
+    cout << "Answer is: " << output << endl;
+
+    return output;
+}
 
 
-class Rectangle
+int sinCalc(double opp, double hyp)
 {
-    private:
-        int width{};
-        int height{};
-    
-    public:
+    double sin;
 
-        void get_width() {cout<< width;}
+    if (opp == 0 || opp < 0) 
+    {
+        cout << "Positive opposite side value? :" << endl;
+        cin >> opp;
+    }
 
-        void get_height() {cout<< height;}
+    else if (hyp == 0 || hyp < 0) 
+    {
+        cout << "Positive hypotenuse value? :" << endl;
+        cin >> hyp;
+    }
 
-};
-
-class Base{
-    int x;
-
-    public:
-        void getA(int a) {a = x;}
-        int getX() {return x;}
-
-};
-
+    sin = opp / hyp;
+    cout << "Sin value is: " << sin << endl;
+    return sin;
+}
 
 int main()
 {
-    Player p3 {"Seb", 50, 100};
+    pow( 5,10 );
+    sinCalc (1.5, 9);
 
-    p3.print();
-    p3.calc(3,4);
-
-    Rectangle small;
-    small.get_height();
-    
-    
     return 0;
-
 }
             
