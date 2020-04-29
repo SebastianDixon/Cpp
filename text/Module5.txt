@@ -28,3 +28,56 @@ int val = *pNum;
 running the program again, will give the address a different value, as it is only specific to that run
 
 leaving a pointer uninitialized is not recommended as it can produce bugs difficult to track and leaves your code unsecure
+
+Reference types
+
+
+- A reference type is an alias for another type
+- the reference type overloads the use of the & operator
+- A reference cannot be reassigned later in the code
+- A reference must be assigned a value upon creation to prevent error
+
+Upon initialisation of the reference type, the operator must be shown at the instance
+```
+int num2 = 3;
+int & refNum = num2;    //reference declred with & operator
+refNum = 4;
+
+cout << num2 << endl;
+cout << refNum << endl;
+cout << &num2 << '\n' << &refNum << endl;
+```
+- the integer num2 with a value of 3 is made
+- the reference 'refNum' is made and assigned to the integer num2
+- refNum is reassigned to the integer value 4
+- this also changes the value of num2 to 4
+
+both the integer and assigned reference have the same address in memory
+
+a common usage in C++ is for references to be made in parameters for functions, this can assign the parameter value to the variable where it was called
+```
+void passByRef(int &);  //function prototype shown to be given a reference argument in its parameters
+
+int main()
+{
+    int num = 3;
+    cout << "num starts as: " << num << endl;
+    passByRef(num);
+    cout << "num value referenced after function increment: " << num << endl;
+    
+    return num;
+}
+
+void passByRef(int & refNum)
+{
+    cout << "reference value passed as: " << refNum << endl;
+    ++refNum;
+    cout << "reference value incremented: " << refNum << endl;
+}
+```
+
+the function 'passByRef' is made with the arguments as a reference integer
+inside the main function an integer num is created with value 3
+
+this is passed to the function passByRef, then the reference argument given in the parameter is assigned to the integer variable num
+the value of refNum is incremented by 1, this applied the same operation to the num value as they are stored at the same address
