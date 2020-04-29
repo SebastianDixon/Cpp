@@ -1,0 +1,10 @@
+Pointers
+
+
+each variable being declared has a memory location, then referred to as the variable, this memory location is fixed throughout the use of the program, and is referred to as the scope of the variable
+
+most objects in c++ have an identity which means they have a unique memory location during their lifetime
+
+A pointer is a variable that holds the memory address of these objects or variable that have been declared.
+to use pointers, declare a pointer variable
+
