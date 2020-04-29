@@ -8,3 +8,23 @@ most objects in c++ have an identity which means they have a unique memory locat
 A pointer is a variable that holds the memory address of these objects or variable that have been declared.
 to use pointers, declare a pointer variable
 
+initialisation of a pointer variable
+```
+int num = 3;
+int* pNum = &num;
+```
+
+the variable 'num' has the value of 3, this is stored under a memory address
+initialising the variable 'pNum' is the pointer variable, it has integer form as indicated by the int with *
+the value stored is &num, this is the memory address of variable num, as inidicated by the & character
+
+this address looks like 0x61ff08
+
+the original value stored under that address can be found placing a * before the variable name storing the address:
+```
+int val = *pNum;
+```
+
+running the program again, will give the address a different value, as it is only specific to that run
+
+leaving a pointer uninitialized is not recommended as it can produce bugs difficult to track and leaves your code unsecure
