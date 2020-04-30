@@ -49,6 +49,11 @@ class Person
         this->middle_name = middle_name;
     }
 
+    ~Person()
+    {
+        cout << "Destroyed Function" << endl;
+    }
+
 };
 
 int main()
