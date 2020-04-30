@@ -67,6 +67,8 @@ int main()
     *p1 = Person("Billy", "Bob", 70, "PHILLANTHROPACOUS");
 
     cout << p1 << endl;
+
+    delete p1;
     
     return 0;
 }
