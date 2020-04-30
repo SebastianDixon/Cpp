@@ -59,15 +59,14 @@ class Person
 int main()
 {
 
-    Person p1();
-    Person p2("Fred", "Bob");
-    Person p3("Billy", "Bob", 70);
-    Person private_p3("Billy", "Bob", 70, "PHILLANTHROPACOUS");
+    // Person * p1 = new Person("Billy", "Bob", 70, "PHILLANTHROPACOUS");
+    Person * p1 = new Person;
 
-    cout << p1;
-    cout << p2.first_name << p2.last_name << endl;
-    cout << p3.first_name << p3.last_name << p3.age << endl;
-    cout << private_p3.get_mid() << endl;
+    cout << &p1 << endl;
+    
+    *p1 = Person("Billy", "Bob", 70, "PHILLANTHROPACOUS");
+
+    cout << p1 << endl;
     
     return 0;
 }
