@@ -1,25 +1,18 @@
 #include <iostream>
 using namespace std;
 
-void passByRef(int &);  //function prototype shown to be given a reference argument in its parameters
 
 int main()
 {
-    int num = 3;
-    cout << "num starts as: " << num << endl;
+    int * pInt = new int;
+    double * pDouble = new double;
 
-    passByRef(num);
+    *pInt = 3;
+    *pDouble = 4.2;
 
-    cout << "num value referenced after function increment: " << num << endl;
+    delete pInt;
+    delete pDouble;
+
     
-    return num;
-}
-
-void passByRef(int & refNum)
-{
-    cout << "reference value passed as: " << refNum << endl;
-
-    ++refNum;
-
-    cout << "reference value incremented: " << refNum << endl;
+    return 0;
 }
