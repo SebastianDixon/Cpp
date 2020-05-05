@@ -13,10 +13,6 @@ class Person
 
     public:
 
-    void get_iD();
-
-    void sayHello();
-
     Person();
 
 
@@ -26,5 +22,14 @@ class Person
     Person(string first_name, string last_name, int age);
 
     ~Person();
+
+    void get_iD();
+
+    void sayHello();
+
+    void setfName(string fName);
+
+
+
 
 };

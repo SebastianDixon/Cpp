@@ -37,6 +37,15 @@ void Person::sayHello()
     cout << "Hello" << endl;
 }
 
+void Person::setfName(string fName)
+{
+    this->first_name = fName;
+
+    cout << this->first_name << endl;
+}
+
+//DOG
+
 Dog::Dog()
 {
 
@@ -55,7 +64,7 @@ void Dog::sayHello()
 
 Dog::~Dog()
 {
-    
+
 }
 
 
@@ -69,6 +78,8 @@ int main()
     Dog * p2 = new Dog("Good", "boy");
 
     p2->sayHello();
+
+    p1->setfName("Boris");
 
 
     delete p1;
