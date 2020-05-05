@@ -1,5 +1,7 @@
 #include <iostream>
 #include "Person.h"
+#include "Dog.h"
+
 using namespace std;
 
 
@@ -30,20 +32,47 @@ void Person::get_iD()
     cout << first_name << last_name << age << endl;
 }
 
+void Person::sayHello()
+{
+    cout << "Hello" << endl;
+}
+
+Dog::Dog()
+{
+
+}
+
+Dog::Dog(string first_name, string last_name)
+{
+    this->first_name = first_name;
+    this->last_name = last_name;
+}
+
+void Dog::sayHello()
+{
+    cout << "Woof" << endl;
+}
+
+Dog::~Dog()
+{
+    
+}
+
 
 int main()
 {
 
-    Person * p3 = new Person("Rick", "Gervais", 50);
+    Person * p1 = new Person("Rick", "Gervais", 50);
 
-    Person u1{"Fred", "Bob", 45};
+    p1->sayHello();
 
-    u1.get_iD();
+    Dog * p2 = new Dog("Good", "boy");
 
-    p3->get_iD();
+    p2->sayHello();
 
 
-    delete p3;
+    delete p1;
+    delete p2;
 
     return 0;
 }

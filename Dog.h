@@ -3,13 +3,11 @@
 using namespace std;
 #pragma once
 
-class Person
+class Dog
 {
     private:
     string first_name;
     string last_name;
-
-    int age;
 
     public:
 
@@ -17,14 +15,10 @@ class Person
 
     void sayHello();
 
-    Person();
+    Dog();
 
+    Dog(string first_name, string last_name);
 
-    Person(string first_name, string last_name);
-
-
-    Person(string first_name, string last_name, int age);
-
-    ~Person();
+    ~Dog();
 
 };
