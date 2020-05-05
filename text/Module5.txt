@@ -81,3 +81,117 @@ inside the main function an integer num is created with value 3
 
 this is passed to the function passByRef, then the reference argument given in the parameter is assigned to the integer variable num
 the value of refNum is incremented by 1, this applied the same operation to the num value as they are stored at the same address
+
+Memory management
+
+
+A memory leak can occur if instantiated objects arent finished and released from memory when the program is finished.
+More and more memory is requested from the limited quantity to instantiate more objects.
+When too much memory is requested, the OS will commonly stop the program at this point
+
+Allocating memory
+
+
+different keywords are used to determine memory properties for variables being created
+
+Pointers can be assigned to data types, instead of variables
+This is done at the start of the program. this tells the compiler that when the program runs to dynamically assign some memory to hold the data type value
+
+by the process of dereferencing is used to then assign a value to the address created
+```
+int * pInt = new int;
+double * pDouble = new double;
+
+*pInt = 3;
+*pDouble = 5.0;
+```
+
+
+here a pointer is made to both int and double data types
+the address of these values is unknown, by dereferencing, the values of 3 and 5.0 are assigned, and these new memory addressing are dynamically assigned to these values
+
+The new operator is an operator which denotes a request for memory allocation on the Heap.
+
+the size of the address at both pInt and pDouble is 4 bytes, however the size of the variable stored at these address may differ from this size of the address
+for our example here, the size of the values stored at these respective addresses is 4 and 8 bytes.
+
+Deallocating memory
+
+
+If unused memory is not released to the operating system, it is wasted, and will ultimately create a memory leak is more memory is allocated dynamically by the program
+the keyword delete is used to release the memory back to the OS
+```
+int * pInt = new int;
+double * pDouble = new double;
+
+*pInt = 3;
+*pDouble = 4.2;
+
+delete pInt;
+delete pDouble;
+```
+
+Headers
+
+
+a class file allows you to model real world application in your code
+
+the #include pre-processor directive is used to implement the header file
+in c++ it is common practice to split your classes into two files, the function file, ending in .h, and the implementation of that code in the other, .cpp file
+
+e.g. creating a function to perform a mathematical operation such as exponent
+producing a header file which contains the mathematical operation as such will be good practice
+
+```
+#pragma once
+// math.h
+using namespace std;
+
+void Pow(int base, int power)
+{
+    int output = base;
+    for(int count = power -1; count > 0; --count)
+    {
+        output *= base;
+        cout << output << endl;
+    }
+    cout << "Answer is: " << output << endl;
+}
+```
+
+```
+#include "math.h"
+// main.cpp
+using namespace std;
+
+int main()
+{
+    Pow(4,5);
+    
+    return 0;
+}
+```
+the .cpp file used the include statement and was able to use the function defined in the header file
+
+a static class can be defined in the header, the static keyword would allow the class to be used without having to have made an instantiation of it before hand
+
+Dynamic object creation
+
+
+the instance of a class can be created using pointers, these are initialised as such:
+
+```
+Person * p3 = new Person("Rick", "Gervais", 50);
+
+p3->get_iD();
+```
+
+in order to perform operation on these pointers the arrow selection statement is used instead of the dot selection
+
+```
+delete p3;
+```
+
+then delete the pointer after use to prevent a system memory leak
+
+Class scope
