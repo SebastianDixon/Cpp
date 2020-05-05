@@ -34,5 +34,16 @@ void Person::get_iD()
 int main()
 {
 
+    Person * p3 = new Person("Rick", "Gervais", 50);
+
+    Person u1{"Fred", "Bob", 45};
+
+    u1.get_iD();
+
+    p3->get_iD();
+
+
+    delete p3;
+
     return 0;
 }
