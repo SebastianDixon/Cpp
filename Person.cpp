@@ -1,6 +1,5 @@
 #include <iostream>
 #include "Person.h"
-#include "Dog.h"
 
 using namespace std;
 
