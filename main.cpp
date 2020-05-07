@@ -5,13 +5,13 @@ using namespace std;
 
 class Meat
 {
-    public:
+    protected:
     double protein;
     double price;
 
     string animal;
 
-    
+    public:
     Meat(){}
 
     Meat(double protein, double price, string animal)
@@ -23,11 +23,19 @@ class Meat
 
     ~Meat(){}
 
+    friend void externalFunction(Meat & meatStats);
+
     void meatStats()
     {
         cout << protein << price << animal << endl;
     }
 };
+
+void externalFunction(Meat &meatStats)
+{
+    cout << "External function accessed" << endl;
+}
+
 
 class Steak: public Meat
 {
@@ -87,6 +95,8 @@ int main()
 
     Steak sebsSteak{25.0, 50.0};
     sebsSteak.howDone("rare");
+
+    externalFunction(jerky);
 
     return 0;
 }
