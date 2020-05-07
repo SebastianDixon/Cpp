@@ -1,0 +1,66 @@
+Inheritance
+
+
+new classes can be derived from existing ones using inheritance
+```
+class Meat
+{
+    private:
+    double protein;
+    double price;
+    string animal;
+
+    public:
+    Meat();
+    Meat(double protein, double price, string animal);
+    ~Meat();
+    void meatStats()
+    {
+        cout << protein << price << animal << endl;
+    }
+};
+
+class Steak: Meat
+{
+    private:
+    enum cooked {rare=1, mediumrare, medium, welldone};
+    string animal = "Cow";
+
+    public:
+    Steak();
+    Steak(double protein, double price, enum cooked);
+    ~Steak();
+};
+```
+
+the class meat has been made which private variables protein, price and animal. 
+These variables have been inherited by the class Steak, and subclass of the base class meat.
+
+the class Steak has added onto the meat class its own private variables and can assign the values of the aforementioned variable animal
+
+the private  variables in the base class cant be accessed by an inherited class
+
+protected variables are also present in classes
+
+Protected keyword
+
+
+a protected variable allows the scope of the variable to change. the variable is pubic to inheritance classes, but private outside of its own class and the inherited classes
+
+this does away with the necessity of creating accessing functions for the inherited classes to use the base class variables
+
+using an accessor function in the instance of a protected variable doesn't produce an error, but just overrides the action
+
+```
+protected:
+    double protein;
+    double price;
+    string animal;
+```
+this is how it is implemented in the base class
+
+Friend functions
+
+
+this can be created by a class to form an external function which can access all the members of the class
+to use these members they must be passed as arguments as they cannot take the this keyword
