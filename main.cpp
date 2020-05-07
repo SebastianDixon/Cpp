@@ -29,7 +29,7 @@ class Meat
     }
 };
 
-class Steak: Meat
+class Steak: public Meat
 {
     private:
     enum cooked {rare=1, mediumrare, medium, welldone};
