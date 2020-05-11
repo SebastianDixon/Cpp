@@ -12,6 +12,8 @@ class Person
     public:
     virtual void displayProp() const;
 
+    virtual ~Person();
+
     Person(){}
 
     Person(string name, int age)
@@ -20,9 +22,13 @@ class Person
         this->age = age;
     }
 
-    ~Person(){}
 
 };
+
+Person::~Person()
+{
+    cout << "Person object deleted" << endl;
+}
 
 void Person::displayProp() const
 {
@@ -61,12 +67,15 @@ void Student::displayProp() const
 int main()
 {
 
-    Person p1{"Rick", 50};
-    p1.displayProp();
+    Person * p1 = new Person{"Pointer", 70};
+    p1->displayProp();
 
-    Student s1{"UCL", "Fred", 19};
-    s1.displayProp();
-    
+    Student * s1 = new Student{"UCL", "Fred", 19};
+    s1->displayProp();
+
+    delete p1;
+    delete s1;
+
 
     return 0;
 }
