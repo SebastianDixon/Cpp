@@ -52,7 +52,7 @@ class Student:public Person
         this->age = age;
     }
 
-    ~Student(){}
+    virtual ~Student();
 
 };
 
@@ -63,18 +63,27 @@ void Student::displayProp() const
     cout << college << endl;
 }
 
+Student::~Student()
+{
+    cout << "Student object deleted" << endl;
+}
+
+
+void displayRef(Person & ref)
+{
+    ref.displayProp();
+}
+
 
 int main()
 {
 
-    Person * p1 = new Person{"Pointer", 70};
+    Person * p1 = new Student{"Pointer", "Bill", 70};
     p1->displayProp();
 
-    Student * s1 = new Student{"UCL", "Fred", 19};
-    s1->displayProp();
+    displayRef(*p1);
 
     delete p1;
-    delete s1;
 
 
     return 0;
