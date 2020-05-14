@@ -1,33 +1,16 @@
-#include <string>
-using namespace std;
 #pragma once
+#include <string>
+#include "Person.h"
+using namespace std;
 
-class Student
+class Student : public Person
 {
-    private:
-    string f_name;
-    string l_name;
-
-    int age;
-    int phone_num;
-
-    string address;
-    string city;
-
-    public:
+public:
     Student();
-
-    Student(string f_name, string l_name, int age, int phone_num, string address, string city);
-
+    Student(std::string first_name, std::string last_name, int age, std::string race, int phone);
     ~Student();
 
-    void get_iD();
+    virtual int OutputAge(int age);
+    int getAge();
 
-    void get_pos();
-
-    void set_iD(string f_name, string l_name, int age, int phone_num);
-
-    void set_pos(string address, string city);
-
-    void SitInClass();
 };
