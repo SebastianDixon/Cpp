@@ -10,10 +10,16 @@ class point
 };
 
 
-std::istream & operator >> (std::istream & is, point & p)
+istream & operator >> (istream & is, point & p)
 {
     is >> p.x >> p.y;
     return is;
+}
+
+ostream & operator << (ostream & os, const point & p)
+{
+    os << "["<< p.x << p.y << "]";
+    return os;
 }
 
 int main()
