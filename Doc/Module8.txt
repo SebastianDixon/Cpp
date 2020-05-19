@@ -1,0 +1,252 @@
+I/O Streams
+
+
+streams are a sequence of bytes sent from device to device
+the c++ stream operator allows the input of output to the console using << or >>
+cout and cin are the keywords used to define these actions inside the std namepsace
+
+the <iostream> header file contains both the use of the istream and ostream which contain the cout and cin keywords
+
+std::cerr is another keyword from the iostream class which allows you to perform output to the stderr device    
+std::endl is one we have used before, this creates a new line character and is known as a manipulator
+
+istream 
+
+neither istream or ostream are individual classes they are aliases of the iostream class
+
+when using the <string> operator, the input to a string stream will only allow the input of one word, i.e. it will stop at the first whitespace
+e.g.
+```
+string s;
+cin >> s;
+cout << s << "is your string " << endl;
+```
+
+to input strings including a whitespace the std::getline function must be called
+this takes two parameters
+1. the string stream of choice
+2. the string object to store this input under
+e.g
+```
+string name;
+cout << "what is your name: ";
+getline(std::cin, name);
+cout << name << " tis your name?" << endl;
+```
+
+having created a custom class, there is no support from the iostream operators to output the objects of that class
+you can extend the io stream operators class to include support for your custom class
+
+this is done using a function defined with the specific iostream operator << or >>
+
+```
+class point
+{
+    public:
+    int x;
+};
+
+std::istream & operator >> (std::istream & is, point & p)
+{
+    is >> p.x;
+    return is;
+}
+```
+- the class point has been made with integer public variable x
+- a function called operator >> is made with reference type
+	- this name must be used as it is the overloading statement for the iostream class
+- the arguments are the istream reference 'is' and the reference to an object of the class point
+- the first parameter is identifying the stream from which the values are given
+- the second parameter is the thing which is input to the stream
+- The function must return a std::istream object by reference.
+
+the istream object we have made reference to will act as the normal std::cin function in the function
+
+```
+point p1;
+cout << "enter a value for your object: ";
+cin >> p1;
+cout << p1.x << endl;
+```
+this shows the application of the above class and function
+an object under p1 has been made
+the istream function std::cin has been called with the object 'p1'
+the value for the integer x is input as that is its parameter
+the value is output to the console
+
+adding multiple values to the potential multiple parameters of your class object would be implemented as follows:
+
+```
+class point
+{
+    public:
+    int x,y;
+};
+std::istream & operator >> (std::istream & is, point & p)
+{
+    is >> p.x >> p.y;
+    return is;
+}
+int main()
+{
+    string s;
+    cout << "what is your string? : ";
+    cin >> s;
+    cout << s << " is your string" << endl;
+    point p1;
+    cout << "enter the x then y value for your object: ";
+    cin >> p1.x >> p1.y;
+    cout << p1.x << endl;
+    cout << p1.y << endl;
+
+    return 0;
+}
+```
+
+ostream
+
+a custom << operator is defined in a similar way to the istream operator
+
+inside the function we output the point in the format [x,y]
+the pointer to the class pointer object is made const
+
+```
+ostream & operator << (ostream & os, const point & p)
+{
+    os << "["<< p.x << p.y << "]";
+    return os;
+}
+```
+
+Manipulators
+
+
+manipulators are input to a stream to change the way it is formatted, e.g. std::endl; will input an end line character
+std::flush will output everything in the memory buffer to the device ( console) immediately, often used to output a message before the program crashes in a debug test
+
+both endl and flush dont take parameters as they are predefined in the iostream header, some manipulators to take parameters and are from the <iomanip> header
+std::setw( ) will define the minimum field width with an integer in its parameters, it doent cause truncation if another value is longer than the parameters of the setw manipulator
+
+```
+int const x = 10;
+string const message = "blob";
+
+cout << "this is an example of endl" << endl;
+
+cout << "[" << message << "]";
+cout << "[" << setw(10) << message << "]";
+cout << "[" << setw(2) << message << "]" << endl;
+
+cout << x << " is the value of x in a flush" << flush;
+```
+output:
+```
+this is an example of endl 
+[blob][      blob][blob] 
+10 is the value of x in a flush
+```
+
+Output formatting
+
+
+the setw() manipulator is by default a std::right format, std::left can also be used, these are known as right and left justifications
+std::internal is useful for outputting numbers, The + or – sign is left-justified at the start of the field with, and the number itself is right-justified at the end of the field width
+each of these right, left and internal justification apply to the subsequent output
+
+```
+string const message = "blob";
+cout << left;
+cout << "[" << setw(10) << message << "]" << endl;
+
+cout << right;
+cout << "[" << setw(10) << message << "]" << endl;
+```
+output: 
+```
+[blob      ]
+[      blob]
+```
+
+the moving is a shift within the bounds of the setw() manipulator
+the intenal moves the sign of the operator to the front of the output bound
+
+```
+cout <<  setw(10) << -159 << endl;
+cout << setw(10) << -659.56 << endl;
+cout << internal;
+cout << setw(10) << -159 << endl;
+cout << setw(10) << -659.56 << endl;
+```
+output:
+```
+      -159
+   -659.56
+-      159
+-   659.56
+```
+
+after working with several justifications, then reset to the default with cout << std::right;
+
+- Fixed format – always displays a number, a decimal point, and a fraction part (i.e. it never uses scientific format such as 1.23e5, regardless of how big or small the number is)
+
+- Scientific format – always uses scientific format such as 1.23e5
+
+- general makes the optimisation between the two, to select it you must use the unsetf() function
+```
+cout.unsetf(ios::fixed | ios::scientific);
+```
+
+showing the sign of a value can be done using justifications
+```
+int x, y, z;
+std::cout << std::showpos;
+std::cout << x << " " << y << " " << z << std::endl;
+std::cout << std::noshowpos;
+std::cout << x << " " << y << " " << z << std::endl;
+```
+
+the std::showpos() will show the sign of the integer
+the opposite not;
+```
++4201184 +6422400 +4201072
+4201184 6422400 420
+```
+(these are default values)
+
+
+justifications can also be made to identify the base of a number or to change it into a specific base representation
+std::showbase manipulator will show if a number is decimal, hex, denary, oct etc
+a leading 0 for octal numbers, and a leading 0x for hexadecimal numbers
+std::noshowbase manipulator stops the number base from being displayed
+
+```
+cout << showbase;
+cout << 64 << endl;
+cout << oct << 64 << endl;
+cout << hex << 64 << endl;
+cout << noshowbase;
+```
+
+output
+```
+64
+0100
+0x40
+```
+
+
+std::uppercase is used to make the letters in the hexadeciaml system uppercase and scientific format uppercase 
+std::lowercase does the opposite
+
+```
+cout << hex;
+cout << 205 << endl;
+cout << uppercase << 205 << endl; 
+cout << nouppercase << 205 << endl;
+```
+output:
+```
+cd
+CD
+cd
+```
