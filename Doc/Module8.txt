@@ -250,3 +250,94 @@ cd
 CD
 cd
 ```
+
+
+File streams
+
+
+you can write and read from files using the <fstream> header file
+std::ifstream is used for the allows you to write to a file with the >> operator
+std::ofstream is used for the allows you to read from a file with the << operator
+
+std::fstream is for both read and write
+
+a function can be made to organise the opening, use and closing of the files required
+```
+void fileFunc()
+{
+    ofstream ofile;
+    ifstream ifile;
+    fstream iofile;
+
+    ofile.open("file1.dat");
+    ifile.open("file2.dat");
+    iofile.open("file3.dat");
+
+    //use files
+    ofile.close();
+    ifile.close();
+    iofile.close();
+}
+```
+
+the open and close is done automatically if the file is called within the class, and closed if the class destructor is called
+
+the file doesnt have to be opened using the default open() function, but can be done with several others
+- std::ios_base::in
+	- input only, default for ifstream objects
+- std::ios_base::out
+	- output only, default for ofstream objects
+- std::ios_base::binary
+	- no formatting applied, each character interpreted as individual parts
+- std::ios_base::ate
+	- IO operation begin at end of file
+- std::ios_base::app
+	- Output operation at end of file, preserving content
+- std::ios_base::trunc
+	- any existing open file for ofstream will be overwritten with this input data
+
+these can be used together with the OR operator ( | )
+
+Reading and writing text data
+
+
+when the file is open, string data can be written to a text file line by line
+
+read and write functions
+```
+void fileWrite()
+{
+    ofstream ofile;
+    ofile.open("file1.txt");
+    if(ofile.is_open())
+    {
+        ofile << "Line 1" << endl;
+        ofile << "Line 2" << endl << endl;
+        ofile << "Line 4" << endl;
+        ofile.close();
+    }
+    else
+    {
+        cout << "couldnt open file" << endl;
+    }
+}
+
+void fileRead()
+{
+    ifstream ifile;
+    ifile.open("file1.txt");
+    if(ifile.is_open())
+    {
+        string line;
+        while(getline(ifile, line))
+        {
+            cout << line << endl;
+        }
+        ifile.close();
+    }
+    else
+    {
+        cout << "couldnt read from file" << endl;
+    }
+}
+```
