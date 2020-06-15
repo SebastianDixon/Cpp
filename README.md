@@ -1,3 +1,5 @@
 # Cpp-Intro
-An introduction to c++ with the microsoft MOOC course.
-Both the introduction and intermediate course
+An introduction to c++ with the microsoft MOOC.
+Both introduction and intermediate series
+
+building familiarity with c++ OOP principles, loop structures and Inheritance
