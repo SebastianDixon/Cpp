@@ -3,24 +3,6 @@
 
 using namespace std;
 
-class Thing{
-public:
-    string name;
-    int age;
-
-    Thing(){}
-
-    Thing(string name, int age) {
-        this->name = name;
-        this->age = age;
-    }
-
-    ~Thing()= default;
-
-    void details() {
-        cout << name << "" << age << endl;
-    }
-};
 
 class BankAccount{
 private:
