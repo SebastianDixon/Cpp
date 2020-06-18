@@ -80,6 +80,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/VSCode/cpp-adv/BankAccount.h">
+			<Option target="cpp_adv"/>
+		</Unit>
+		<Unit filename="C:/VSCode/cpp-adv/Person.h">
+			<Option target="cpp_adv"/>
+		</Unit>
 		<Unit filename="C:/VSCode/cpp-adv/main.cpp">
 			<Option target="cpp_adv"/>
 		</Unit>

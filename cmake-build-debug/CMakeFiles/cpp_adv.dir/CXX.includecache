@@ -6,9 +6,25 @@
 
 #IncludeRegexTransform: 
 
+C:/VSCode/cpp-adv/BankAccount.h
+string
+-
+
+C:/VSCode/cpp-adv/Person.h
+string
+-
+
 C:/VSCode/cpp-adv/main.cpp
 iostream
 -
 string
+-
+Person.h
+C:/VSCode/cpp-adv/Person.h
+BankAccount.h
+C:/VSCode/cpp-adv/BankAccount.h
+cstdlib
+-
+ctime
 -
 

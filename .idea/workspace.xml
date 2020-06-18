@@ -29,10 +29,17 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b7131436-ed5e-453a-a014-8e6cafca6c25" name="Default Changelist" comment="restructure">
+    <list default="true" id="b7131436-ed5e-453a-a014-8e6cafca6c25" name="Default Changelist" comment="public inheritance">
+      <change afterPath="$PROJECT_DIR$/BankAccount.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Person.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cpp_adv.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cpp_adv.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cpp_adv.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cpp_adv.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cpp_adv.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cpp_adv.dir/depend.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cpp_adv.dir/main.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cpp_adv.dir/main.cpp.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cpp_adv.dir/objects.a" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cpp_adv.dir/objects.a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cpp_adv.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cpp_adv.cbp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/cpp_adv.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cpp_adv.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
@@ -49,6 +56,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1dMJz6E7tKd74t75rUXAWWqy7V2" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -58,6 +68,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.first.check.clang-format" value="false" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="ObjectiveC" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunManager">
@@ -82,7 +93,10 @@
       <workItem from="1592305937162" duration="3443000" />
       <workItem from="1592309534146" duration="372000" />
       <workItem from="1592309916693" duration="206000" />
-      <workItem from="1592310141793" duration="825000" />
+      <workItem from="1592310141793" duration="2076000" />
+      <workItem from="1592312995557" duration="7000" />
+      <workItem from="1592386657602" duration="2358000" />
+      <workItem from="1592483371328" duration="3550000" />
     </task>
     <task id="LOCAL-00001" summary="adv course branch">
       <created>1592229332769</created>
@@ -112,7 +126,14 @@
       <option name="project" value="LOCAL" />
       <updated>1592310444680</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="public inheritance">
+      <created>1592310978288</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1592310978288</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -134,29 +155,46 @@
     <MESSAGE value="adv course branch" />
     <MESSAGE value="explicit constructors&#10;default constructors" />
     <MESSAGE value="restructure" />
-    <option name="LAST_COMMIT_MESSAGE" value="restructure" />
+    <MESSAGE value="public inheritance" />
+    <option name="LAST_COMMIT_MESSAGE" value="public inheritance" />
   </component>
   <component name="WindowStateProjectService">
     <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1592309694857">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1592309694857" />
-    <state width="1899" height="196" key="GridCell.Tab.0.bottom" timestamp="1592309047764">
+    <state width="1899" height="196" key="GridCell.Tab.0.bottom" timestamp="1592487073605">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="196" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1592309047764" />
-    <state width="1899" height="196" key="GridCell.Tab.0.center" timestamp="1592309047764">
+    <state width="1899" height="196" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1592487073605" />
+    <state width="1899" height="196" key="GridCell.Tab.0.center" timestamp="1592487073605">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="196" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1592309047764" />
-    <state width="1899" height="196" key="GridCell.Tab.0.left" timestamp="1592309047764">
+    <state width="1899" height="196" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1592487073605" />
+    <state width="1899" height="196" key="GridCell.Tab.0.left" timestamp="1592487073604">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="196" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1592309047764" />
-    <state width="1899" height="196" key="GridCell.Tab.0.right" timestamp="1592309047764">
+    <state width="1899" height="196" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1592487073604" />
+    <state width="1899" height="196" key="GridCell.Tab.0.right" timestamp="1592487073605">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="196" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1592309047764" />
+    <state width="1899" height="196" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1592487073605" />
+    <state width="1899" height="356" key="GridCell.Tab.1.bottom" timestamp="1592395962027">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="356" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1592395962027" />
+    <state width="1899" height="356" key="GridCell.Tab.1.center" timestamp="1592395962027">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="356" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1592395962027" />
+    <state width="1899" height="356" key="GridCell.Tab.1.left" timestamp="1592395962026">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="356" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1592395962026" />
+    <state width="1899" height="356" key="GridCell.Tab.1.right" timestamp="1592395962027">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="356" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1592395962027" />
     <state x="184" y="86" key="MergeDialog" timestamp="1592229448648">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -169,10 +207,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="325" y="161" width="1293" height="711" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1592310076373" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1592310446257">
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1592310979623">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1592310446257" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1592310979623" />
     <state x="769" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1592229458666">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
