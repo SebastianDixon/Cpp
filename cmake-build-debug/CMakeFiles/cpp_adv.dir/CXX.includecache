@@ -19,6 +19,8 @@ ctime
 C:/VSCode/cpp-adv/main.cpp
 iostream
 -
+istream
+-
 string
 -
 BinarySearch.h
