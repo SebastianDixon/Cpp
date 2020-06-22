@@ -6,12 +6,14 @@
 
 #IncludeRegexTransform: 
 
-C:/VSCode/cpp-adv/BankAccount.h
+C:/VSCode/cpp-adv/BinarySearch.h
+iostream
+-
 string
 -
-
-C:/VSCode/cpp-adv/Person.h
-string
+cstdlib
+-
+ctime
 -
 
 C:/VSCode/cpp-adv/main.cpp
@@ -19,12 +21,6 @@ iostream
 -
 string
 -
-Person.h
-C:/VSCode/cpp-adv/Person.h
-BankAccount.h
-C:/VSCode/cpp-adv/BankAccount.h
-cstdlib
--
-ctime
--
+BinarySearch.h
+C:/VSCode/cpp-adv/BinarySearch.h
 
