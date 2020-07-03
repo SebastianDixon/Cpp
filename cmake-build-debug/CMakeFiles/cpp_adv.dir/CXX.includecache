@@ -6,23 +6,21 @@
 
 #IncludeRegexTransform: 
 
-C:/VSCode/cpp-adv/BinarySearch.h
+C:/VSCode/cpp-adv/main.cpp
 iostream
 -
 string
 -
-cstdlib
--
-ctime
--
+prime.h
+C:/VSCode/cpp-adv/prime.h
 
-C:/VSCode/cpp-adv/main.cpp
+C:/VSCode/cpp-adv/prime.h
 iostream
 -
 istream
 -
 string
 -
-BinarySearch.h
-C:/VSCode/cpp-adv/BinarySearch.h
+cmath
+-
 

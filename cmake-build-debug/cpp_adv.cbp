@@ -89,7 +89,13 @@
 		<Unit filename="C:/VSCode/cpp-adv/Person.h">
 			<Option target="cpp_adv"/>
 		</Unit>
+		<Unit filename="C:/VSCode/cpp-adv/ascii.h">
+			<Option target="cpp_adv"/>
+		</Unit>
 		<Unit filename="C:/VSCode/cpp-adv/main.cpp">
+			<Option target="cpp_adv"/>
+		</Unit>
+		<Unit filename="C:/VSCode/cpp-adv/prime.h">
 			<Option target="cpp_adv"/>
 		</Unit>
 		<Unit filename="C:/VSCode/cpp-adv/CMakeLists.txt">

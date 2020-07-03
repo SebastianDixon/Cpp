@@ -1,43 +1,20 @@
 #include <iostream>
-#include <istream>
 #include <string>
-#include "BinarySearch.h"
+#include "prime.h"
 
 using namespace std;
 
-int character(string & userStr){
-    int len;
-    len = userStr.length();
-
-    char userChar[len];
-    int userNum[len];
-
-    for (int i = 0; i < len; ++i) {
-        userChar[i] = static_cast<int>(userStr[i]);
-        userNum[i] = static_cast<int>(userChar[i]);
-    }
-
-    cout << userStr << endl;
-
-    for (int i = 0; i < len; ++i) {
-        if (userNum[i] == 32){
-            cout << ", ";
-        }
-        else {
-            cout << userNum[i] << " ";
-        }
-    }
-
-    return 0;
-
-}
 
 int main() {
-    string wordz;
+    string message;
+    cout << "what is your message :";
+    cin >> message;
 
-    cout << "what is your string: ";
-    getline(cin, wordz);
 
-    character(wordz);
+    int num = 10000;
+    int p1;
+
+    p1 = prime(num);
+    rsa(p1, message);
     return 0;
 }
