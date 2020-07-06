@@ -3,4 +3,4 @@ project(cpp_adv)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(cpp_adv main.cpp Person.h BankAccount.h BinarySearch.h ascii.h prime.h)
+add_executable(cpp_adv main.cpp Person.h BankAccount.h BinarySearch.h ascii.h prime.h random.h)

@@ -98,6 +98,9 @@
 		<Unit filename="C:/VSCode/cpp-adv/prime.h">
 			<Option target="cpp_adv"/>
 		</Unit>
+		<Unit filename="C:/VSCode/cpp-adv/random.h">
+			<Option target="cpp_adv"/>
+		</Unit>
 		<Unit filename="C:/VSCode/cpp-adv/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

@@ -24,6 +24,7 @@ int prime(int & limit){
             break;
         }
     }
+    cout << p1 << endl;
     return p1;
 }
 
