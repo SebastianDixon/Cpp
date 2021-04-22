@@ -11,7 +11,7 @@ int g_x{1};
 // global variables are 0 initialised by default
 static int g_y{2};
 // this global variable is static, meaning it can only be accessed inside this file
-// this is known as having internal linkage
+// this called having internal linkage
 constexpr int g_z{};    // const and constexpr global variables have internal linkage by default
 
 extern constexpr int g_num{};   // constant global variables can be given external linkage using extern keyword
@@ -148,7 +148,7 @@ void blockTime(){
         }
     } else{
         std::cout << "0 value";
-        num++;
+        ++num;
     }
     // block indicated with { } around multiple statements where one is accepted
 
@@ -157,7 +157,7 @@ void blockTime(){
         std::cout << orange << '\n';    // outer block orange value
         int orange{7};  // this nested variable shadows the outer block orange value
         std::cout << orange << '\n';    // nested block orange value
-        orange++;   // evaluates the nested orange value
+        ++orange;   // evaluates the nested orange value
         std::cout << orange << '\n';
     }
     std::cout << orange << '\n' << '\n';    // outer block orange value
@@ -165,7 +165,7 @@ void blockTime(){
     int banana{3};
     {
         std::cout << banana << '\n';    // outer block banana value
-        banana++;   // evaluates outer block banana value
+        ++banana;   // evaluates outer block banana value
         std::cout << banana << '\n';
     }
     std::cout << banana << '\n';    // outer block banana value still evaluated to nested block value
@@ -198,8 +198,22 @@ static int add(int x, int y){
     return x + y;   // static applied to functions gives internal linkage, called internal functions
 }
 
+int localstatics(){
+    static int s_num{1};  // static initialiser only executes once
+    ++s_num;  // increment operation evaluated each call of function
+    std::cout << s_num << '\n';
+    return s_num;
+}   // static keyword, num not destroyed here, unlike automatic duration
+
+int generateID(){
+    static int s_itemID{0};
+    return s_itemID++;  // this example function assigns unique ID's for items in a game
+}
+
 int main(){     // execution starts at the top of the main function
-    globalvars();
+    localstatics();
+    localstatics();
+    localstatics();
     return 0;       // return 0 or EXIT_SUCCESS if the program ran normally, return EXIT_FAILURE if not
 }
 

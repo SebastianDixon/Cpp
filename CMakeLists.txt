@@ -1,6 +1,6 @@
-cmake_minimum_required(VERSION 3.16)
-project(cpp_adv)
+# cmake_minimum_required(VERSION <specify CMake version here>)
+project(untitled)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(cpp_adv main.cpp Person.h BankAccount.h BinarySearch.h ascii.h prime.h random.h)
+add_executable(untitled main.cpp constants.h other.cpp constants.cpp circle.h)
