@@ -29,13 +29,13 @@ void preprocessor(){
 #endif
 }
 
-int isBoolean(){
+bool isBoolean(){
     bool b1{};      // default value false
     bool b2{true};
     std::cout << "input your boolean"; std::cin >> b1;
     std::cout << b1 << '\n';
     // boolean inputs are 1 or 0 by default, not true or false
-    return 0;
+    return b1;
 }
 
 int stringz(){
@@ -210,11 +210,109 @@ int generateID(){
     return s_itemID++;  // this example function assigns unique ID's for items in a game
 }
 
+void typedefsStuff(){
+    typedef double decimalnumber_t; // a typedef assigns "decimalnumber" double representation
+    double x{};
+    decimalnumber_t y{};    // variables x and y are of the same type
+
+    using wholenumber_t = int;  // alternative method for assigning typedefs called type alliases
+    // typedefs are useful for code maintenance, changing the type of many items at once
+    // they can also be shorthand for long complex types
+}
+
+auto typeinference(int x){  // auto type is not for parameters, use function templates instead
+    ++x;
+    auto decimalnum{5.9};   // initialised with double type, therefore takes double type
+    std::cout << typeid(decimalnum).name() << '\n'; // showing decimalnum takes double type
+    return x;   // return type is int, therefore function takes int type via inference
+}
+
+void implicit_conv(){
+    // coercion is the compiler implicitly converting types
+    long l{5};  // this long takes integer, numeric widening
+    double d{0.12f};    // this double takes long, numeric promotion
+    double p{5};    // this double takes integer, numeric conversion
+    int x{20000};   // overflowing range of a type causes unexpected outputs
+    // if an int takes double value, numeric narrowing, losing accuracy
+}
+
+void explicit_conv(){
+    int y{5};
+    int x{11};
+    float f(x / y); // defined integer variables will produce integer output, even though float specified
+    float f_cast(float(x) / y); // now x has been C cast to float type, producing float output
+    float f_s_cast(static_cast<float>(x) / y);  // static cast occurs at compile time, less error prone
+    std::cout << f << " " << f_cast << " " << f_s_cast << '\n';
+
+    int i{10};
+    i = static_cast<int>(i / 2.5);  // here static cast is used to avoid compiler complain about loss of data
+}
+
+int conditional(int size){
+    using namespace std;
+    switch (size) {
+        // dont initialize variables in switch statement blocks, delcaration and assignment is ok
+        case 1:
+            cout << "too small";
+            break;  // break exits the block
+        case 2:
+            cout << "just right";
+            return size;
+        case 3:
+            cout << "too big";
+            break;
+        default:    // else type conditional, optional
+            cout << "not a size";
+            break;
+    }   // compared to if statements, switch only evaluates the expression once, more efficent
+    return 0;
+}
+
+bool fallthrough(char c){
+    switch (c) {
+        case 'a':   // no break or return creates a fallthrough to the next case
+            [[fallthrough]];    // added to show intentional fallthrough and prevent warnings
+        case 'e':
+            // all statements in a switch have equal scope
+        case 'i':
+        {
+            // use a block for initialisation
+            int x{5};
+        }
+        case 'o':
+        case 'u':
+            return true;    // if either of these cases are satisfied, they fallthough into return statement
+        default:
+            return false;
+    }
+}
+
+int unconditional(){
+    // both goto statement and statement label must appear in the same function
+    // the pair have function scope
+    double x{};
+tryAgain:   // the statement label
+    std::cout << "enter positive num:"; std::cin >> x;
+    if (x < 0.0){
+        goto tryAgain;  // the goto statement
+    }
+    std::cout << "The square root of " << x << " is " << sqrt(x) << '\n';
+
+    bool dog{};
+    std::cout << "own a dog? 1/0:"; std::cin >> dog;
+    if (dog){
+        std::cout << "dogs rule :)" << '\n';
+        goto end;   // avoid goto, as it makes flow confusing
+    }
+    std::cout << "must be a cat person" << '\n';
+end:    // example of jumping forward
+    return 0;
+}
+
 int main(){     // execution starts at the top of the main function
-    localstatics();
-    localstatics();
-    localstatics();
-    return 0;       // return 0 or EXIT_SUCCESS if the program ran normally, return EXIT_FAILURE if not
+    unconditional();
+    return 0;
+    // if the program ran normally return 0 or EXIT_SUCCESS, else return EXIT_FAILURE
 }
 
 int divide(int x, int y){
