@@ -309,8 +309,53 @@ end:    // example of jumping forward
     return 0;
 }
 
+int loops(){
+    int x{1};   // use signed loop variables
+    while (x <= 10){    // conditional loop which repeats from top of block
+        std::cout << x << '\n';
+        ++x;
+    }
+
+    int y{};
+    do {
+       std::cout << "integer > 5:"; std::cin >> y;
+    }   // do while loops ensure at least one run, only repeating if necessary
+    while (y <= 5);
+
+    return 0;
+}
+
+int pow(int base, int exponent)
+{
+    int total{ 1 };
+    for (int i{}; i < exponent; ++i)    // (init-statement; condition; end-expression), i has loop scope
+        total *= base;
+
+    return total;
+}
+
+void floop(){
+    for (int x{0}, y{10}; x <= 10; ++x, --y) {   // two iterable variables can be used
+        if ((x % 2) == 0){
+            continue;   // moves to the next iteration of loop
+        }
+        std::cout << x << ' ' << y << '\n';
+    }
+}
+
+int testfunc(){
+    int failed{};
+    if (pow(2, 4) != 16) failed += 1;
+    if (pow(3, 7) != 2187) failed += 1;
+    if (fallthrough('a') != true) failed += 1;
+    if (fallthrough('q') != false) failed += 1;
+
+    std::cout << failed;
+    return failed;  // put function tests inside function for quickly checking functionality
+}
+
 int main(){     // execution starts at the top of the main function
-    unconditional();
+    testfunc();
     return 0;
     // if the program ran normally return 0 or EXIT_SUCCESS, else return EXIT_FAILURE
 }
