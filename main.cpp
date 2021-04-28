@@ -3,6 +3,7 @@
 #include <cmath>    // for std::pow and std::abs
 #include "constants.h"
 #include "circle.h"
+#include <cassert>  // for assert()
 #define BOB_NAME    // this is a macro pre processor directive
 //using namespace std, is discouraged as it introduces namespace errors
 
@@ -347,15 +348,73 @@ int testfunc(){
     int failed{};
     if (pow(2, 4) != 16) failed += 1;
     if (pow(3, 7) != 2187) failed += 1;
-    if (fallthrough('a') != true) failed += 1;
-    if (fallthrough('q') != false) failed += 1;
+    // if (fallthrough('a') != true) failed += 1;
+    // if (fallthrough('q') != false) failed += 1;
 
     std::cout << failed;
     return failed;  // put function tests inside function for quickly checking functionality
 }
 
+double squareroot(double x){
+    assert(x > 0 && "cant square root 0 or negatives");  // assertion is true, if false, exit program
+    double val = sqrt(x);
+    std::cout << "square root = " << val;
+    return val;
+}
+
+enum Colour{    // enumeration is user defined data type, capitalised name
+    colour_red, // enumerators define all the possible values this type can hold
+    colour_green,   // each value has a default integer assignment 0, 1, 2, ...
+    colour_blue,    // value can be assigned to enumerations overriding default
+};
+
+enum Flower{
+    flower_tulip,
+    flower_rose,
+    flower_daisy,
+};
+
+void compareEnum(){
+    Flower f1{flower_tulip};
+    Colour c1{colour_red};
+    // std::cout << (f1 == c1 ? "these are equal\n" : "these are not equal\n");
+    // comparison gives warning, different data types, but is possible since evaluated as integer
+}
+
+void seeColour(Colour c){   // function for returning intended string representation for enum type
+    switch (c){
+        case colour_blue:
+            std::cout << "Blue\n";
+            break;
+        case colour_red:
+            std::cout << "Red\n";
+            break;
+        case colour_green:
+            std::cout << "Green\n";
+            break;
+        default:
+            std::cout << "unknown\n";
+    }
+}
+
+
+void colours(){
+    Colour carpaint = colour_red;   // assignment and initialisation of enum type variable
+    Colour wallpaint{colour_green};
+    int sky_colour{colour_blue};    // enum holds integer type, so can be assigned to integer variables
+    std::cout << carpaint << " " << wallpaint << " " << sky_colour << '\n';
+    // this outputs integer values of each enum value
+
+    int inputColour{};
+    std::cout << "input your colour (0, 1, 2):";
+    std::cin >> inputColour;
+    auto switch_colour{ static_cast<Colour>(inputColour) };    // workaround for inputting enum type with std::cin
+    seeColour(switch_colour);
+
+}
+
 int main(){     // execution starts at the top of the main function
-    testfunc();
+    compareEnum();
     return 0;
     // if the program ran normally return 0 or EXIT_SUCCESS, else return EXIT_FAILURE
 }
