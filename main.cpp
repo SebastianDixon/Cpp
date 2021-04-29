@@ -3,6 +3,8 @@
 #include <cmath>    // for std::pow and std::abs
 #include "constants.h"
 #include "circle.h"
+#include <ctime> // for std::time()
+#include <cstdlib>  // for std::rand() and std::srand()
 #include <cassert>  // for assert()
 #define BOB_NAME    // this is a macro pre processor directive
 //using namespace std, is discouraged as it introduces namespace errors
@@ -112,7 +114,7 @@ bool almostequal(double a, double b, double epsilon){
     return (std::abs(a - b) <= (std::max(std::abs(a), std::abs(b)) * epsilon));
     // std::abs finds the absolute difference between parameters
     // epsilon is a parameter of value 1e-8 used for determining equality between float values
-    // a scaling function using std::max has been made to ensure appropriate values of epsilon given parameters a and b
+    // a scaling function using std::max has been made to ensure appropriate values of epsilon given a and b
 }
 
 bool logicalweather(){
@@ -397,7 +399,6 @@ void seeColour(Colour c){   // function for returning intended string representa
     }
 }
 
-
 void colours(){
     Colour carpaint = colour_red;   // assignment and initialisation of enum type variable
     Colour wallpaint{colour_green};
@@ -413,8 +414,110 @@ void colours(){
 
 }
 
+void toCompareEnumOrNot(){
+    enum class Car{ // enum classes are strongly typed and strongly scoped, scoped enumeration
+        ferrari,    // ferrari is inside the scope of Car
+        ford,   // enum values no longer use enum name prefix
+        fiat,
+    };
+
+    Car firstcar{Car::ford};    // ford not directly accessible, scope must be specified for enum class
+    std::cout << static_cast<int>(firstcar);
+    // enum class values not implicitly converted to integer, therefore static_cast needed
+
+}
+
+struct Person{ // a structure is an aggregate data type
+    std::string name{}; // members of the struct
+    int age{};
+    bool sex{}; // true = M, false = F
+    double heightMeters{0.0}; // default values can be given to non static members
+};
+
+bool isAdult(Person x){
+    if (x.age >= 18){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+void outputPerson(Person p1){
+    std::cout << "name:" << p1.name << '\n';
+    std::cout << "age:" << p1.age << '\n';
+    std::cout << "sex:" << p1.sex << '\n';
+    std::cout << "height:" << p1.heightMeters << '\n' << '\n';
+}
+
+void People(){
+    Person fred{};   // declaration of fred using type Student
+    fred.name = "Frederick";    // assignment of member values using . operator
+    fred.sex = true;
+    fred.heightMeters = 1.75;
+
+    std::cout << "how old is " << fred.name << ":";
+    std::cin >> fred.age;
+    bool alcohol = isAdult(fred);   // struct passed as parameter
+    std::cout << "alcohol license:" << alcohol << '\n';
+
+    Person girl{"girl", 10, false, 1.5};    // initialiser list
+    Person guy{girl};   // copy struct values into another
+    guy.name = "guy";
+    guy.sex = true;
+
+    outputPerson(girl);
+    outputPerson(guy);
+}
+
+struct coord{   // struct delcarations dont take any memory, often kept in header files
+    double latitude{};
+    double longitude{};
+};
+
+struct home{
+    coord location{};   // coord struct inside home struct
+    std::string postcode{};
+};
+
+void inputHome(){
+    home eton{{1.0, -2.0}, "postcode"}; // initialisation of nested struct
+    std::cout << eton.location.longitude << '\n';   // scoping for struct member inside struct
+}
+
+coord uselessfunction(coord x){
+    ++x.latitude;
+    ++x.longitude;
+    std::cout << x.latitude << '\n' << x.longitude << '\n';
+    return x;   // return multiple values using struct method
+}
+
+void locationInput(){
+    coord trafalgarSquare{51.5080, 0.1281};
+    uselessfunction(trafalgarSquare);
+}
+
+void random(int total){
+    std::srand(static_cast<unsigned int>(std::time(nullptr)));  // system clock seed
+    // this avoids output of same random numbers with fixed seed
+    // std::time returns seconds since midnight
+    // null pointer parameter prevents storing in object
+    for (int x{}; x < total; ++x){
+        std::cout << std::rand() << '\n';
+    }
+}
+
+int randomRange(int min, int max){
+    std::srand(static_cast<unsigned int>(std::time(nullptr)));  // system clock seed
+
+    static constexpr double fraction { 1.0 / (RAND_MAX + 1.0) };  // static used for efficiency
+    // rand_max is the maximum random value in c++
+    int output = min + static_cast<int>((max - min + 1) * (std::rand() * fraction));
+    std::cout << output << '\n';
+    return output;
+}
+
 int main(){     // execution starts at the top of the main function
-    compareEnum();
+    randomRange(0, 1000);
     return 0;
     // if the program ran normally return 0 or EXIT_SUCCESS, else return EXIT_FAILURE
 }
