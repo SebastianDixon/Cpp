@@ -584,8 +584,26 @@ void arrayWork(){
     }
 }
 
+int string_array(){
+    char name[]{"sebastian"};   // C style string, array of characters, ends with /0 inserted
+    const int length{sizeof(name) / sizeof(name[0])}; // use instead if not C++17 capable
+    std::cout << length << '\n';    // returns 10 given additional /0 character
+
+    for (int i = 0; i < length; ++i) {
+        std::cout << name[i] << ',';
+    }
+    std::cout << '\n';
+
+    char yourname[255]; // allocate more size than thought for inputs given uncertainty
+    const int l2{sizeof(yourname) / sizeof(yourname[0])}; // use instead if not C++17 capable
+    std::cout << "input your name:";
+    std::cin.getline(name, l2); // prevents overflow from inputs greater than variable size
+    // use std::string when possible instead of c style strings
+    return 0;
+}
+
 int main(){     // execution starts at the top of the main function
-    arrayWork();
+    string_array();
     return 0;
     // if the program ran normally return 0 or EXIT_SUCCESS, else return EXIT_FAILURE
 }
