@@ -516,8 +516,76 @@ int randomRange(int min, int max){
     return output;
 }
 
+int get_max(int array[5]){
+    int prev{};
+    int max{};
+    for (int x{}; x < 5; ++x){
+        max = ((array[x] > prev) ? array[x] : prev);
+        prev = array[x];
+    }
+    return max;
+}
+
+int get_min(int array[5]){
+    int prev{};
+    int min{};
+    for (int x{}; x < 5; ++x){
+        min = ((array[x] < prev) ? array[x] : prev);
+        prev = array[x];
+    }
+    return min;
+}
+
+int sort_array(int array[5]){
+    return 0;
+}
+
+void arrayWork(){
+    Person class1[10]{};    // struct data type for array
+    class1[0] = {"pupil1", 20, true, 1.8};    // first pupil in class1 array
+    std::cout << class1[0].age << '\n'; // scoping for struct members indexed in array
+
+
+    const int arrayexample[2]{1, 2};    // const array must use direct intialisation, assignment not possible
+    int unsureofsize[]{1, 2, 3, 4, 5};  // array implicitly takes fixed allocation of 5, even though no given
+
+    enum students{
+        bob,
+        stan,
+        ed,
+        maxstudent,
+    };
+    int examscores[students::maxstudent]{};
+    examscores[bob] = 90;   // using indexing enum conversion to int for readable code
+    // for enum class use static_cast<int> to index
+
+    int testScores[5]{54, 62, 61, 88, 45};
+    std::cout << "max:"<< get_max(testScores) << '\n';
+    std::cout << "min:"<< get_min(testScores) << '\n';
+
+    int arrayArray [][6]{  // only the left size specification can be ommited for multi dimensional arrays
+            {1, 2, 3, 4, 5, 6}, // each line is a row indexed from 0
+            {2, 4, 6, 8, 10, 12}, 
+            {1, 3, 5, 7, 9, 11}
+    };
+    for (int i = 0; i < 3; ++i) {
+        std::cout << '\n';
+        for (int j = 0; j < 6; ++j) {
+            std::cout << arrayArray[i][j] << ",";   // row-wise output
+        }
+    }
+    std::cout << '\n';
+
+    for (int i = 0; i < 6; ++i) {
+        std::cout << '\n';
+        for (int j = 0; j < 3; ++j) {
+            std::cout << arrayArray[j][i] << ",";   // column-wise output
+        }
+    }
+}
+
 int main(){     // execution starts at the top of the main function
-    randomRange(0, 1000);
+    arrayWork();
     return 0;
     // if the program ran normally return 0 or EXIT_SUCCESS, else return EXIT_FAILURE
 }
