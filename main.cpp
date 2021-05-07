@@ -64,6 +64,9 @@ void charPtr(){
     auto numVowels{ std::count_if(std::begin(name), std::end(name), hasA) };
     // std::count_if counts items that satisfy the condition
     std::cout << name << " has " << numVowels << " a's\n";
+
+    const char* name1{"Seb"};   // pointer to c style string is symbolic constant, stored in ROM
+    const char* name2{"Seb"};   // compiler combines these two strings under same address
 }
 
 void searchArray(){
@@ -72,7 +75,44 @@ void searchArray(){
     std::cout << "found "<< *found << " at " << found << '\n';
 }
 
+const char* getName(){
+    return "Sebastian"; // string literal has static duration, dies at end of program, not block
+}
+
+void dynamicType(){
+    int* ptr{new int};  // ptr allocated an integer and assign the address for access later
+    *ptr = 10;  // integer allocated to memory address under ptr
+    delete ptr; // free up the dynamically allocated memory to OS
+    ptr = nullptr;  // removes value from scope of pointer, prevent dangling pointer
+    int* value{new (std::nothrow) int}; // if no memory available from OS, std::nothrow prevents crashing
+}
+
+void memoryLeak(){      // memory leak occurs if active pointer goes out of scope, or is assigned a different address
+    int x{5};
+    int* ptr{new int};
+    ptr = &x;   // ptr assigned different address, causing memory leak
+
+    int num{10};
+    int* ptr1{new int};
+    delete ptr1;
+    ptr1 = &num;    // delete pointer before reassignment prevent leak
+
+    int* ptr2{new int};
+    ptr2 = new int; // previous int allocation overwriten, creating memory leak
+}
+
+void dynamicArray(){
+    int length{};
+    std::cout << "array length:"; std::cin >> length;
+    int* ptr{new int[length]{}};
+    for (int i = 1; i <= length; ++i) {
+        *(ptr + i) = (i*2);
+        std::cout << *(ptr + i) << '\n';
+    }
+    delete[] ptr;
+}
+
 int main(){
-    searchArray();
+    dynamicArray();
     return 0;
 }
