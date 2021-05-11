@@ -1,5 +1,6 @@
 #include <iostream>
 #include <algorithm>
+#include <string>
 
 void increment(int* x){ // variable address (pointer) parameter
     ++*x;   // increment value at address
@@ -102,17 +103,130 @@ void memoryLeak(){      // memory leak occurs if active pointer goes out of scop
 }
 
 void dynamicArray(){
-    int length{};
+    std::size_t length{};   // std::size_t is used for index values
     std::cout << "array length:"; std::cin >> length;
-    int* ptr{new int[length]{}};
+
+    int* array{new int[length]{}};    // new[] method for arrays
     for (int i = 1; i <= length; ++i) {
-        *(ptr + i) = (i*2);
-        std::cout << *(ptr + i) << '\n';
+        array[i] = (i*2);
+        std::cout << array[i] << '\n';
     }
-    delete[] ptr;
+    delete[] array;   // delete[] method to free memory
+}
+
+void getNames(){
+    std::size_t length{};   // std::size_t is used for index values
+    std::cout << "how many names:"; std::cin >> length;
+
+    std::string* names{new std::string[length]{}};
+    for (int i = 0; i < length; ++i) {
+        std::string name{};
+        std::cout << "Enter Name#" << i+1 << ":";
+        std::cin >> name;
+        names[i] = name;
+    }
+
+    std::sort(names, names + length);
+
+    for (int i = 0; i < length; ++i) {
+        std::cout << "Name#" << i+1 << ":" << names[i] << '\n';
+    }
+
+    delete[] names;
+}
+
+void constPointer(){
+    int x{5};
+    int y{7};
+    const int* ptr1{&x};    // points to a const value, pointer itself is not const
+    ptr1 = &y;  // given pointer itself is not const, this is legal
+
+    int* const ptr2{&x};    // const pointer created, address cannot be changed, const after data type
+    *ptr2 = 10; // the address of ptr2 is constant, not the value stored underneath, indirection still possible
+
+    const int* const ptr3{&y};    // const pointer to const value possible, no change possible
+}
+
+int increaseRef(int& x){    // references used most as function parameters to change variable values
+    return ++x; //  references are prefered to pointers for parameters
+}
+
+int printArray(int(&array)[4]){  // in order to pass array references as parameters, specify the size
+    const int length{sizeof(array) / sizeof(array[0])};
+    for (int i = 0; i < length; ++i) {
+        std::cout << array[i];
+    }
+    return 0;
+}
+
+void refTest(){
+    int x{5};
+    int& ref{x};    // a reference must be initialised and cannot be changed to reference another variable
+    std::cout << &ref<< '\n' << &x << '\n'; // a reference is an alias for a variable
+    const int y{2};
+    const int& ref2{y}; // const reference can only be assigned const variables
+    const int& numRef{1+2}; // reference allowed to r-value expression
+    std::cout << numRef << '\n';
+
+    increaseRef(x);
+    std::cout << x << '\n';
+    int scores[4]{1, 2, 3, 4};
+    printArray(scores);   // when arrays are passed to parameters as references, they dont decay into pointers
+}
+
+struct Human{
+    int age;
+    std::string name;
+};
+
+struct Prof{
+    Human human;
+    std::string subject;
+};
+
+void refShortcut(){
+    Human fred{};
+    int& fredage{fred.age};  // shortcut for writing out full scoping for variable
+    fredage = 5;
+}
+
+void pointerMembers(){
+    Human player{};
+    Human* ptr{&player};
+    (*ptr).age = 5; // equivalent statements, confusing method for member selectinon
+    ptr->age = 5;   // equivalent statements, pointers use arrow member selection operator -> for their members
+
+    Human& ref{player};
+    ref.age = 6;    // references can use ordinary member selection operator . for members
+
+    Prof head{};
+    Prof* profptr{&head};
+    profptr->human.age = 50;    // mix of arrow and dot operator for choosing members
+}
+
+int arrayPrint(){
+    int array[]{1, 2, 3, 4, 5};
+    for (const auto &x : array){    // for-each loop iterates over an array, assigning elements to the given variable
+        std::cout << x << ' ';
+    }
+    std::cout << '\n';
+
+    std::string names[]{"Alex", "Betty", "Caroline", "Dave", "Emily", "Fred", "Greg", "Holly"};
+    std::string guess{};
+    std::cout << "enter a name:";
+    std::cin >> guess;
+    for (const auto &element:names){
+        if (guess == element){
+            std::cout << guess << " was found\n";
+            return 0;
+        }
+    }
+    std::cout << guess << " was not found\n";
+    return 0;
+
 }
 
 int main(){
-    dynamicArray();
+    arrayPrint();
     return 0;
 }
