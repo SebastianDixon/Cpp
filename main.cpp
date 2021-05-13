@@ -1,6 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include <string>
+#include <array>
 
 void increment(int* x){ // variable address (pointer) parameter
     ++*x;   // increment value at address
@@ -223,10 +224,95 @@ int arrayPrint(){
     }
     std::cout << guess << " was not found\n";
     return 0;
+}
 
+enum class Type{    // create an enumeration class for data types
+    INT,
+    DOUBLE,
+    CSTRING
+};
+
+void printValue(void* ptr, Type type){  // void (general) pointer can take any data type
+    switch (type) {
+        case Type::INT: // enum class requires strongly typed member
+            std::cout << *static_cast<int*>(ptr) << '\n';
+            break;
+        case Type::DOUBLE:
+            std::cout << *static_cast<double*>(ptr) << '\n';
+            break;
+        case Type::CSTRING:
+            std::cout << static_cast<char*>(ptr) << '\n';
+            break;
+    }
+}
+
+void voidpointers(){
+    int iVal{10};
+    double dVal{50.5};
+    char cVal[]{"c_string"};
+
+    printValue(&iVal, Type::INT);
+    printValue(&dVal, Type::DOUBLE);
+    printValue(cVal, Type::CSTRING);    // c style string decays to pointer address, therefore & operator not needed
+}
+
+void pointerpointer(){
+    int x{5};
+    int* ptr1{&x};
+    int** ptr2 = &ptr1; // pointer for the address of ptr1, ** assignment
+    std::cout << ptr1 << ' ' << ptr2 << '\n';    // address values
+    std::cout << *ptr1 << ' ' << **ptr2 << '\n';    // values under the address, indirection ** for pointer pointer
+
+    int** array = new int*[10]; // dynamically allocating an array of pointers, 10 rows
+    for (int i = 0; i < 10; ++i) {
+        array[i] = new int[5];  // dynamically allocating column to each row
+    }
+}
+
+int flatArrayIndexing(int row, int col){
+    return (row * col);
+}
+
+void flattenedArray(){
+    auto array = new int[10][5]; // this dynamic 2d array requires first index to be a compile time constant
+    int* flatarray = new int[50];   //  this is the same array, flattened out into one dimension
+
+    array[7][2] = 5; // allocating 7th row, 2nd column
+    flatarray[flatArrayIndexing(7, 2)] = 5; // same operation using function
+    std::cout << flatarray[14] << '\n';
+}
+
+void arraymanage(std::array<int, 4> &array){ // always pass std::array by reference
+    std::sort(array.begin(), array.end());
+    for (int x:array) {
+        std::cout << x << ", ";
+    }
+    std::cout << "length=" << array.size() << '\n'; // .size() function gets length of std::array
+}
+
+void arraysequel(){
+    std::array<int, 4> array1{1, 2, 3, 4};  // type and length must be given together if directly initialised
+    array1[0] = 9;   // indexing works as normal
+    std::array<int, 4> array2{1, 2, 3}; // omitted values are zero initialised
+    array2.at(0) = 9;   // indexing utilising range checking, error if out of range
+    arraymanage(array1);
+    arraymanage(array2);    // .size() outputs type std::size_t
+
+    for (std::size_t i{}; i < array1.size(); ++i) { // notice data type of iterator given .size() function output
+        std::cout << array1[i];
+    }
+    std::cout << '\n';
+
+    std::array<Human, 2> apt1; // std::array can use struct type aswell
+    apt1.at(0) = {32, "fred"};
+    apt1.at(1) = {30, "julia"};
+
+    for (const Human& h : apt1) {  // const for performance
+        std::cout << h.age << ' ' << h.name << '\n';
+    }
 }
 
 int main(){
-    arrayPrint();
+    arraysequel();
     return 0;
 }
