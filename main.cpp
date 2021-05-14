@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <string>
 #include <array>
+#include <vector>
 
 void increment(int* x){ // variable address (pointer) parameter
     ++*x;   // increment value at address
@@ -290,7 +291,7 @@ void arraymanage(std::array<int, 4> &array){ // always pass std::array by refere
     std::cout << "length=" << array.size() << '\n'; // .size() function gets length of std::array
 }
 
-void arraysequel(){
+void arraysequel(){ // std::array are safer and easier to use fixed arrays
     std::array<int, 4> array1{1, 2, 3, 4};  // type and length must be given together if directly initialised
     array1[0] = 9;   // indexing works as normal
     std::array<int, 4> array2{1, 2, 3}; // omitted values are zero initialised
@@ -312,7 +313,22 @@ void arraysequel(){
     }
 }
 
+void takevector(std::vector<int> &v){
+    std::cout << "vector size: " << v.size() << '\n';  // vectors remember size through parameters, no degradation
+}
+
+int standardvector(){  // std::vector makes dynamic arrays safer and easier
+    std::vector<int> vector{1, 2, 3}; // length defined in run-time, memory dynamically allocated
+    vector.at(0) = 0;    // .at() funtionality, range checking, error thrown if invalid range chosen
+    vector = {1, 2, 3, 4, 5};    // allowed, std::vector type changes size dynamically
+
+    takevector(vector);
+    vector.resize(7);   // easily changes the size of dynamically sized array, bigger or smaller
+
+    return 0;   // vector goes out of range, memory automatically deallocated
+}
+
 int main(){
-    arraysequel();
+    standardvector();
     return 0;
 }
