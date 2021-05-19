@@ -3,6 +3,7 @@
 #include <string>
 #include <array>
 #include <vector>
+#include <ctime>
 
 void increment(int* x){ // variable address (pointer) parameter
     ++*x;   // increment value at address
@@ -328,7 +329,58 @@ int standardvector(){  // std::vector makes dynamic arrays safer and easier
     return 0;   // vector goes out of range, memory automatically deallocated
 }
 
+inline int max_int(int x, int y){   // inline functions have one defintion per program, avoiding conflicts
+    return (x > y) ? x : y; // short inline function prevent excessive code bloat upon compile
+}
+
+int simpleFunc(){
+    const int sum1{max_int(5, 2)};  // two simple statements make use of the inline function
+    int sum2{max_int(sum1, 10)};    // reducing function overhead runtime of normal function calls
+    std::cout << sum2 << '\n';  // the inline function code is substituted for the call
+    return sum2;
+}
+
+int add(int x, int y){  // first definition of int add()
+    return x + y;
+}
+
+int add(int x, int y, int z){   // second definition of int add(), multiple functions with the same name
+    return x + y + z;   // different parameters or return type create function overloading
+}   // function overloading does not apply for return type variables, compile error occurs
+
+int randRange(int min=1, int max=6){
+    std::srand(static_cast<unsigned int>(std::time(nullptr)));  // system clock seed
+    static constexpr double fraction{1.0 / (RAND_MAX + 1.0)};  // static used for efficiency
+    int output = min + static_cast<int>((max - min + 1) * (std::rand() * fraction));
+    return output;
+}
+
+int outputVal(int x=1); // forward declarations can initialise the default value or function body, not both
+
+int outputVal(int x){
+    return x;
+}
+
+char outputVal(char c=' '){ // function overloading can be used with default parameters for convenience
+    return c;
+}
+
+void defaultParameters(){
+    std::cout << randRange() << '\n';   // no parameter values given, defaults in function used
+    std::cout << randRange(2) << '\n';  // min parameter overwritten with argument value
+    std::cout << randRange(0,5) << '\n';    // both default parameters overwritten
+    std::cout << outputVal(5) << '\n';
+    std::cout << outputVal('s') << '\n';
+}
+
+void functionPointer(){
+    std::cout << reinterpret_cast<void*>(defaultParameters) << '\n';    // output function address
+    void (*funcptr)(){&defaultParameters};  // pointer towards function address, types must match
+    (*funcptr)();   // calls function through pointer
+
+}
+
 int main(){
-    standardvector();
+    functionPointer();
     return 0;
 }
