@@ -4,6 +4,7 @@
 #include <array>
 #include <vector>
 #include <ctime>
+#include <cstdarg>
 
 void increment(int* x){ // variable address (pointer) parameter
     ++*x;   // increment value at address
@@ -373,14 +374,88 @@ void defaultParameters(){
     std::cout << outputVal('s') << '\n';
 }
 
+int someOp(int x){
+    return ++x;
+}
+
 void functionPointer(){
     std::cout << reinterpret_cast<void*>(defaultParameters) << '\n';    // output function address
     void (*funcptr)(){&defaultParameters};  // pointer towards function address, types must match
-    (*funcptr)();   // calls function through pointer
+    (*funcptr)();   // calls function through pointer, explicit dereference
+    funcptr = &arraysequel; // reassigning the pointer value
+    int (*const funcptr2)(int){someOp}; // const pointer made for function with int parameter
+    std::cout << (*someOp)(5) << '\n';  // explicit dereference
+    std::cout << someOp(5) << '\n';  // implicit dereference
 
+    bool (*someFunc)(); // empty function pointer of bool type
+    auto (*anotherFunc)(int){someOp};  // auto keyboard usefull for function pointers
+}
+
+void selectionSort(int *array, int size, bool (*comparisonFcn)(int, int)){  // empty function pointer as parameter
+    for (int startIndex{0}; startIndex < (size - 1); ++startIndex){
+        int bestIndex{ startIndex };
+
+        for (int currentIndex{ startIndex + 1 }; currentIndex < size; ++currentIndex){
+            if (comparisonFcn(array[bestIndex], array[currentIndex])){
+                bestIndex = currentIndex;
+            }
+        }
+        std::swap(array[startIndex], array[bestIndex]);
+    }
+}
+
+bool ascending(int x, int y){
+    return x > y;
+}
+
+void printArray(int *array, int size){
+    for (int i = 0; i < size; ++i) {
+        std::cout << array[i] << " ";
+    }
+}
+
+void countdown(int x){
+    std::cout << "T-" << x << '\n';
+    if (x > 0){
+        countdown(--x); // recursive function calls itself, include a termination statement to prevent infinite loops
+    }
+}
+
+int fibonacci(int find){    // recursive sequence
+    if (find == 0){
+        return 0;
+    }
+    if (find == 1){
+        return 1;
+    }
+    return fibonacci(find - 1) + fibonacci(find - 2);
+}
+
+void sequence(){
+    int total{10};
+    for (int i = 0; i < total; ++i) {
+        std::cout << fibonacci(i) << " ";
+    }
+}
+
+int unknownParameters(int count, ...){  // ellipsis allows multiple arguments in place
+    double sum{};
+    va_list list;   // ellipsis accessed through va_list
+    va_start(list, count);  // va_list initialised in va_start
+    for (int arg = 0; arg < count; ++arg) {
+        sum += va_arg(list, int);   // va_arg gets value out of ellipsis, out of list, type int
+    }
+
+    va_end(list);   // cleanup va_list when finished
+    return sum / count;
+}
+
+void testellipsis(){
+    std::cout << unknownParameters(3, 1, 2, 3) << '\n'; // takes four arguments, two parameters defined
+    std::cout << unknownParameters(5, 10, 52, 48, 12, 99) << '\n';
 }
 
 int main(){
-    functionPointer();
+    testellipsis();
     return 0;
 }
