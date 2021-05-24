@@ -316,7 +316,10 @@ void arraysequel(){ // std::array are safer and easier to use fixed arrays
 }
 
 void takevector(std::vector<int> &v){
-    std::cout << "vector size: " << v.size() << '\n';  // vectors remember size through parameters, no degradation
+    for (std::size_t i = 0; i < v.size(); ++i) {
+        std::cout << v.at(i) << " ";
+    }
+    std::cout << '\n';
 }
 
 int standardvector(){  // std::vector makes dynamic arrays safer and easier
@@ -455,7 +458,49 @@ void testellipsis(){
     std::cout << unknownParameters(5, 10, 52, 48, 12, 99) << '\n';
 }
 
+void lambdas(std::vector<int> &x){ // lambdas are anonymous function objects right at the location where invoked
+    std::sort(x.begin(), x.end(),
+              [](int a, int b){return(std::abs(a) < std::abs(b));}    // lambda passed as third argument to function
+              );
+    takevector(x);
+
+    auto descend{   // lambdas can be stored under variable names, lambda type is unexposed
+        [](int a, int b){return(std::abs(a) > std::abs(b));}
+    };
+    std::sort(x.begin(), x.end(), descend);
+    takevector(x);
+
+    double (*addNumber)(double, double){    // function pointer store lambdas without capture clause
+            [](double a, double b){return a + b;}
+    };
+    double value{addNumber(5, 6)};
+
+    auto genericlambda{ // generic lambda function given auto parameter allowing wide range of inputs
+        [](auto value){
+            static int callCount{0};    // static variable tracks same data type calls
+            std::cout << callCount++ << ": " << value << '\n';
+        }
+    };
+
+    genericlambda("first");
+    genericlambda("second");
+    genericlambda(6);
+
+    auto multiplereturn{
+        [](int a, int b, bool type) -> double { // using the trailing return type indicates all return types are double
+            if (type){
+                return a / b;
+            }
+            return static_cast<double>(a) / b;  // without trailing type, inference not possible, compiler error
+        }
+    };
+
+    std::cout << multiplereturn(5, 2, true) << '\n';
+    std::cout << multiplereturn(5, 2, false) << '\n';
+}
+
 int main(){
-    testellipsis();
+    std::vector<int> nums{2, 4, 6, 1, 3, 5};
+    lambdas(nums);
     return 0;
 }
