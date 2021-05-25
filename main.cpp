@@ -499,8 +499,32 @@ void lambdas(std::vector<int> &x){ // lambdas are anonymous function objects rig
     std::cout << multiplereturn(5, 2, false) << '\n';
 }
 
+void captureclause(){
+    int ammo{30};
+    auto shoot{
+        [ammo]() mutable {  // clause parameters are const copies, mutable keyword removes const
+            std::cout << --ammo << " ammo left\n";
+        }
+    };
+    shoot();
+    shoot();
+
+    auto shoot2{
+        [&ammo](){  // reference clause parameter change original variable
+            std::cout << --ammo << " ammo left\n";
+        }
+    };
+    shoot2();
+    shoot2();
+
+    /* [=](){};    // clause parameter = takes all variables by value
+    [&](){};    // clause parameter & takes all variables by reference
+    [=, &ammo](){};    // other variables by value, ammo by reference, default capture first term
+    [&, ammo](){};    // other variables by reference, ammo by value
+    */
+}
+
 int main(){
-    std::vector<int> nums{2, 4, 6, 1, 3, 5};
-    lambdas(nums);
+    captureclause();
     return 0;
 }
