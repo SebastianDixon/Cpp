@@ -1,6 +1,7 @@
-# Cpp
-C++ programming with the microsoft MOOC.
-Introduction, Intermediate and Advanced
+## Previous work
+C++ programming with Microsoft MOOC (Introduction and Intermediate).
 
-## Advanced
-Exceptions, templates, advanced loops and patterns
+Finished with incomplete understanding
+
+## Current
+Re-learning from learncpp.com
