@@ -40,10 +40,18 @@ private:
     double m_close;
     DateClass dayofprice;
 public:
-    Stock(): m_open{0}, m_close{0}, dayofprice{} {};    // default constructor with member initialisation list
+    Stock(): m_open{0}, m_close{0}, dayofprice{} {
+    }    // default constructor with member initialisation list
 
     Stock(double open, double close, std::array<int, 3> &date)   // non default constructor
-        : m_open{open}, m_close{close}, dayofprice{date} {};
+        : m_open{open}, m_close{close}, dayofprice{date} {
+    }
+
+    Stock(std::array<int, 3> &date) : Stock{0, 0, date} {
+    }   // prevent overlapping constructor by delegating a defined contructor
+
+    ~Stock(){
+    } // destructor
 
     void read_stock(){
         std::cout << "open:$" << m_open << " close:$" << m_close << '\n';
