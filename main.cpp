@@ -44,7 +44,7 @@ public:
     }    // default constructor with member initialisation list
 
     Stock(double open, double close, std::array<int, 3> &date)   // non default constructor
-        : m_open{open}, m_close{close}, dayofprice{date} {
+            : m_open{open}, m_close{close}, dayofprice{date} {
     }
 
     Stock(std::array<int, 3> &date) : Stock{0, 0, date} {
@@ -95,8 +95,50 @@ public:
     }
 };
 
+class Simple {
+    int id;
+public:
+    Simple() = default;
+
+    Simple(int id) {
+        this->id = id;  // the this keyword here seperates the member variables and parameters
+    }
+
+    int getID() {
+        return id;
+    }
+
+    void setID(int x) { // a hidden this parameter inside the constuctor holds the object type being used
+        id = x; // the this keyword is automatically added and always points to the object being worked on
+    }
+};
+
+class Chain {
+    int value;
+public:
+    Chain& plus(int val) {
+        value += val;
+        return *this;   // return this pointer allows for chaining of member functions
+    }
+    Chain& minus(int val) {
+        value -= val;
+        return *this;
+    }
+
+    int get_val() {
+        return value;
+    }
+
+};
+
+void callsChain() {
+    Chain maths{};
+    maths.plus(5).minus(3).plus(10);    // chain calling member functions
+    std::cout << maths.get_val() << '\n';
+}
+
 
 int main(){
-    objectcreation();
+    callsChain();
     return 0;
 }
