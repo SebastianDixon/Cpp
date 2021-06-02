@@ -137,8 +137,104 @@ void callsChain() {
     std::cout << maths.get_val() << '\n';
 }
 
+// header file
+class headerClass { // seperate class definition and implementation, users only need to know how member functions work
+    int m_val;
+public:
+    headerClass(int val);   // define constructors in header file, implement in cpp file
+
+    void set_val(int val);  // implement setters later
+
+    int get_val() const;   // const keyword for member functions before body
+
+    int get_val() {return m_val;}   // overload function for non-const alternative
+};
+// end of header file
+
+headerClass::headerClass(int val) { // cpp file holds implementation of member functions using scoping operator ::
+    set_val(val);
+}
+
+void headerClass::set_val(int val) {
+    m_val = val;
+}
+
+int headerClass::get_val() const {  // const member functions use const keyword in definition and implementation
+    return m_val;   // body of getter function obvious to user, preferably store in header file
+}
+
+void callconstobject() {
+    const headerClass jeremy{456};  // const class object can only call const member functions
+    std::cout << jeremy.get_val() << '\n';
+
+    headerClass bill{590};
+    std::cout << bill.get_val() << '\n';
+}
+
+class StaticGuy {
+private:
+    static int s_id; // static member variables arent associated with class objects, forward declaration for s_value
+    int m_id;
+public:
+    StaticGuy() : m_id{++s_id} {}
+
+    int get_id() {
+        return m_id;
+    }
+
+    static int get_total_id();  // static member functions dont have *this pointer, they dont belong to objects
+
+};
+
+int StaticGuy::s_id{0};  // class identifier and scope resolution operator used to specify static member variable
+
+int StaticGuy::get_total_id() {return s_id;}    // static member implementation dont include keyword
+
+void staticmember() {
+    StaticGuy object1;
+    StaticGuy object2;
+
+    std::cout << object1.get_id() << '\n';
+    std::cout << object2.get_id() << '\n';
+
+    std::cout << "number of ID's: " << StaticGuy::get_total_id() << '\n';
+}
+
+class AnotherFriend;    // class prototype, allowing friend function forward delcaration to work
+
+class FriendlyClass {
+    int value;
+public:
+    FriendlyClass(int val = 0) : value{val} {}
+
+    int get_val(){return value;}
+
+    friend void resetfunc(FriendlyClass &obj, AnotherFriend &obj2);   // friend keyword,forward declaration for function
+};
+
+class AnotherFriend {
+    int open_total;
+public:
+    AnotherFriend(int val = 0) : open_total{val} {}
+
+    int get_val(){return open_total;}
+
+    friend void resetfunc(FriendlyClass &obj, AnotherFriend &obj2);
+};
+
+void resetfunc(FriendlyClass &obj, AnotherFriend &obj2){    // friend function able to be friend of many classes
+    obj.value = 0;   // able to access private members
+    obj2.open_total = 0;
+}
+
+void showfriend(){
+    FriendlyClass obj1{5};
+    AnotherFriend obj2{10};
+    resetfunc(obj1, obj2);
+    std::cout << obj1.get_val() << " " << obj2.get_val() << '\n';
+}
 
 int main(){
-    callsChain();
+    showfriend();
     return 0;
 }
