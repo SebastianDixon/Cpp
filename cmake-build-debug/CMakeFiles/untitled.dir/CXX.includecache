@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/SebyD/CLionProjects/untitled/aggregation.h
+iostream
+-
+string
+-
+
+C:/Users/SebyD/CLionProjects/untitled/composition.h
+iostream
+-
+string
+-
+
+C:/Users/SebyD/CLionProjects/untitled/main.cpp
+iostream
+-
+string
+-
+composition.h
+C:/Users/SebyD/CLionProjects/untitled/composition.h
+aggregation.h
+C:/Users/SebyD/CLionProjects/untitled/aggregation.h
+
