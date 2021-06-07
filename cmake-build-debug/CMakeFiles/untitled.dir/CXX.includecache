@@ -6,25 +6,25 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/SebyD/CLionProjects/untitled/aggregation.h
+C:/Users/SebyD/Documents/GitHub/Cpp/headers/aggregation.h
 iostream
 -
 string
 -
 
-C:/Users/SebyD/CLionProjects/untitled/composition.h
+C:/Users/SebyD/Documents/GitHub/Cpp/headers/composition.h
 iostream
 -
 string
 -
 
-C:/Users/SebyD/CLionProjects/untitled/main.cpp
+C:/Users/SebyD/Documents/GitHub/Cpp/main.cpp
 iostream
 -
 string
 -
-composition.h
-C:/Users/SebyD/CLionProjects/untitled/composition.h
-aggregation.h
-C:/Users/SebyD/CLionProjects/untitled/aggregation.h
+headers/composition.h
+C:/Users/SebyD/Documents/GitHub/Cpp/headers/composition.h
+headers/aggregation.h
+C:/Users/SebyD/Documents/GitHub/Cpp/headers/aggregation.h
 

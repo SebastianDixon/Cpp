@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
-#include "composition.h"
-#include "aggregation.h"
+#include "headers/composition.h"
+#include "headers/aggregation.h"
 
 void composition() {
     std::string p1{"seb"};
