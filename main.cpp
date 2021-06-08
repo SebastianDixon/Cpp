@@ -12,13 +12,13 @@ void composition() {
 }
 
 void aggregation() {
-    std::string p1{"seb"};
-    Teacher teacher{p1};
+    Teacher t1{ "Bob" };
     {
-        Subject math{teacher};  // into scope, destroyed out of scope
-        std::cout << math.get_teacher().get_name() << '\n';
+        Subject math{}; // create an empty Department
+        math.add(t1);
+        std::cout << math;
     }
-    std::cout << teacher.get_name(); // Teacher object still exists
+    std::cout << t1.get_name() << " still exists!\n";
 }
 
 int main(){

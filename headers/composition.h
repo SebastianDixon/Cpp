@@ -49,9 +49,6 @@ public:
  * if class can be designed using a composition relationship, do, robust and simple
  * compositions typically use normal member variables
  * compositions are responsible for creation/destruction of parts
- *
- * aggregations are not responsible for creating/destroying members
- * aggregations typically use pointer or reference members
  */
 
 #endif //UNTITLED_COMPOSITION_H

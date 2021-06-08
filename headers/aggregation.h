@@ -7,6 +7,8 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
+#include <functional>
 
 class Teacher{
 private:
@@ -22,13 +24,23 @@ public:
 
 class Subject {
 private:
-    const Teacher& m_teacher;   // each subject holds multiple teacher, one implemented for example
+    std::vector<std::reference_wrapper<const Teacher>> m_teachers;
 public:
-    Subject(const Teacher& teacher) : m_teacher{teacher} {
+
+    std::vector<std::reference_wrapper<const Teacher>> get_teacher() {
+        return m_teachers;
     }
 
-    Teacher get_teacher() const {
-        return m_teacher;
+    friend std::ostream& operator<<(std::ostream& out, const Subject& sub) {
+        for (const auto& teacher : sub.m_teachers) {
+            out << teacher.get().get_name() << ' ';
+        }
+        out << '\n';
+        return out;
+    }
+
+    void add(const Teacher &t) {
+        m_teachers.push_back(t);
     }
 };
 
