@@ -24,7 +24,7 @@ public:
 
 class Subject {
 private:
-    std::vector<std::reference_wrapper<const Teacher>> m_teachers;
+    std::vector<std::reference_wrapper<const Teacher>> m_teachers;  // std::reference type cannot be anonymous
 public:
 
     std::vector<std::reference_wrapper<const Teacher>> get_teacher() {

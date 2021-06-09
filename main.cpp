@@ -2,6 +2,7 @@
 #include <string>
 #include "headers/composition.h"
 #include "headers/aggregation.h"
+#include "headers/overload.h"
 
 void composition() {
     std::string p1{"seb"};
@@ -21,8 +22,15 @@ void aggregation() {
     std::cout << t1.get_name() << " still exists!\n";
 }
 
+void overloadCents() {
+    Cent c1{5};
+    Cent c2{2};
+    Cent overloadSum{c1 + c2};
+    std::cout << overloadSum << '\n';   // using overloading of << operator
+}
+
 int main(){
-    aggregation();
+    overloadCents();
     return 0;
 }
 
