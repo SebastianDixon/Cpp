@@ -23,10 +23,16 @@ void aggregation() {
 }
 
 void overloadCents() {
-    Cent c1{5};
+    Cent c1{10};
     Cent c2{2};
     Cent overloadSum{c1 + c2};
-    std::cout << overloadSum << '\n';   // using overloading of << operator
+    std::cout << c1 << " + " << c2 << " = " << overloadSum << '\n';   // using overloading of << operator
+    std::cout << c1 / 2 << '\n';
+
+    (!c2) ? (std::cout << "0 true\n") : (std::cout << "0 false\n");
+    (c1==c2) ? (std::cout << "objects equal\n") : (std::cout << "objects not equal\n");
+
+    std::cout << c2++ << '\t' << ++c2 <<'\n';
 }
 
 int main(){

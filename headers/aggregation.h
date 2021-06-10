@@ -35,7 +35,6 @@ public:
         for (const auto& teacher : sub.m_teachers) {
             out << teacher.get().get_name() << ' ';
         }
-        out << '\n';
         return out;
     }
 
