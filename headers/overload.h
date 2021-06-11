@@ -6,6 +6,8 @@
 #define UNTITLED_OVERLOAD_H
 
 #include <iostream>
+#include <vector>
+#include <cassert>
 
 class Cent{
 private:
@@ -78,6 +80,56 @@ Cent Cent::operator/(int value) const {
 
 bool Cent::operator!() const {
     return (m_quantity == 0);
+}
+
+class Inventory{
+private:
+    std::vector<int> m_items{};
+    int m_craft[3][3]{};
+public:
+    Inventory() = default;
+    Inventory(std::vector<int> array) : m_items{array} {}
+
+    void add_item(int value) {
+        m_items.push_back(value);
+    }
+
+    void view_craft() {
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < 3; ++j) {
+                std::cout << m_craft[j][i] << " ";
+            }
+            std::cout << '\n';
+        }
+    }
+
+    int& operator() (int row, int col);
+
+    const int& operator() (int row, int col) const;
+
+    int& operator[] (int index);    // overload subscript operator, reference to include *this parameter
+
+    const int& operator[] (int index) const ; // const version for const variables
+};
+
+int& Inventory::operator() (int row, int col) {
+    assert(col >= 0 && col < 3);    // if condition false, terminate program
+    assert(row >= 0 && row < 3);
+    return m_craft[row][col];
+}
+
+const int& Inventory::operator() (int row, int col) const {
+    assert(col >= 0 && col < 3);
+    assert(row >= 0 && row < 3);
+    return m_craft[row][col];
+}
+
+int& Inventory::operator[](int index) {
+    return m_items[index];  // take place of setter and getter
+}
+
+const int& Inventory::operator[](int index) const {
+    return m_items[index];
 }
 
 #endif //UNTITLED_OVERLOAD_H

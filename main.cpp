@@ -35,8 +35,25 @@ void overloadCents() {
     std::cout << c2++ << '\t' << ++c2 <<'\n';
 }
 
+void overloadList() {
+    std::vector<int> nums{0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    Inventory i1{nums};
+    std::cout << i1[4] << '\n';
+    int newval{99};
+    i1.add_item(newval);
+    std::cout << i1[10] << '\n';
+
+    const std::vector<int> mynums{0, 1, 2, 3, 4};
+    std::cout << mynums[3] << '\n';
+
+    Inventory craft{};
+    craft(1, 1) = 5;   // overload of () op for matrix member variable
+    craft(2, 0) = 9;
+    craft.view_craft();
+}
+
 int main(){
-    overloadCents();
+    overloadList();
     return 0;
 }
 
