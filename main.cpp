@@ -52,8 +52,21 @@ void overloadList() {
     craft.view_craft();
 }
 
+void printShop(Shop s) {
+    std::cout << s;
+}
+
+void typecastOverload() {
+    Shop store1{3};
+    std::cout << store1 << '\n';
+    int status{static_cast<int>(store1)};
+
+    BigShop bandq{20};
+    printShop(bandq);
+}
+
 int main(){
-    overloadList();
+    typecastOverload();
     return 0;
 }
 

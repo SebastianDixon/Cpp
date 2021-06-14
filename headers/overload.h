@@ -132,4 +132,24 @@ const int& Inventory::operator[](int index) const {
     return m_items[index];
 }
 
+class Shop{
+private:
+    int m_stock;
+public:
+    Shop(int stock=0) : m_stock{stock} {};
+
+    operator int() const {return m_stock;}    // overloading the typecast operator for int, conversion to int automatic
+    // user defined data type overloading dont require return type or parameters
+
+};
+
+class BigShop{
+private:
+    int m_bigstock;
+public:
+    BigShop(int stock=0) : m_bigstock{stock} {};
+
+    operator Shop() const {return Shop(m_bigstock * 10);}   // overloading Shop() object call, implicit casting value
+};
+
 #endif //UNTITLED_OVERLOAD_H
