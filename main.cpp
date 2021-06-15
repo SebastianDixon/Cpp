@@ -3,6 +3,7 @@
 #include "headers/composition.h"
 #include "headers/aggregation.h"
 #include "headers/overload.h"
+#include "headers/construct.h"
 
 void composition() {
     std::string p1{"seb"};
@@ -65,8 +66,14 @@ void typecastOverload() {
     printShop(bandq);
 }
 
+void copyconstructor() {
+    Skeleton human{206};
+    Skeleton seb{human};
+    std::cout << seb << '\n';
+}
+
 int main(){
-    typecastOverload();
+    copyconstructor();
     return 0;
 }
 

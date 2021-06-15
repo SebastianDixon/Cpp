@@ -3,6 +3,7 @@
 
 CMakeFiles/untitled.dir/main.cpp.obj: ../headers/aggregation.h
 CMakeFiles/untitled.dir/main.cpp.obj: ../headers/composition.h
+CMakeFiles/untitled.dir/main.cpp.obj: ../headers/construct.h
 CMakeFiles/untitled.dir/main.cpp.obj: ../headers/overload.h
 CMakeFiles/untitled.dir/main.cpp.obj: ../main.cpp
 
