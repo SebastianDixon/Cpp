@@ -70,6 +70,8 @@ void copyconstructor() {
     Skeleton human{206};
     Skeleton seb{human};
     std::cout << seb << '\n';
+
+    printSkeleton(4);   // parameter implicit constructor call for object
 }
 
 int main(){
