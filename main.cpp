@@ -76,6 +76,12 @@ void copyconstructor() {
     printOrgan(o1); // explicit class object parameter call
     printOrgan(static_cast<Organ>("surprise organ"));   // explicit call, as type conversion made explicitly
 
+    Organ o2{"brain"};
+    o1 = o2;
+    printOrgan(o1);
+    o1 = static_cast<Organ>("another organ");
+    printOrgan(o1);
+
 }
 
 int main(){

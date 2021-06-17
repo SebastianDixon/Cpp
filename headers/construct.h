@@ -22,6 +22,7 @@ public:
     // converting constructor, a constructor eligible for implicit conversions
 
     friend std::ostream& operator<< (std::ostream &out, const Skeleton &sk);
+
 };
 
 std::ostream& operator<< (std::ostream &out, const Skeleton &sk) {
@@ -42,7 +43,14 @@ public:
     }
 
     friend std::ostream& operator<< (std::ostream &out, const Organ &og);
+
+    Organ& operator=(const Organ &og);
 };
+
+Organ& Organ::operator=(const Organ &og) {
+    m_name = og.m_name;
+    return *this;   // member functions overloading operators return *this address as reference to object in use
+}
 
 std::ostream& operator<< (std::ostream &out, const Organ &og) {
     out << og.m_name;

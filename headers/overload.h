@@ -44,7 +44,7 @@ public:
 
 Cent& Cent::operator++() {
     ++m_quantity;
-    return *this;
+    return *this;   // return *this allows chainable function calls
 }
 
 Cent Cent::operator++(int) {
