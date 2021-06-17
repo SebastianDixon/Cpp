@@ -67,11 +67,15 @@ void typecastOverload() {
 }
 
 void copyconstructor() {
-    Skeleton human{206};
-    Skeleton seb{human};
+    Skeleton s1{206};
+    Skeleton seb{s1};
     std::cout << seb << '\n';
+    printSkeleton(4);   // implicit constructor call
 
-    printSkeleton(4);   // parameter implicit constructor call for object
+    Organ o1{"heart"};  // explicit normal constructor call
+    printOrgan(o1); // explicit class object parameter call
+    printOrgan(static_cast<Organ>("surprise organ"));   // explicit call, as type conversion made explicitly
+
 }
 
 int main(){
