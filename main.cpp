@@ -81,11 +81,20 @@ void copyconstructor() {
     printOrgan(o1);
     o1 = static_cast<Organ>("another organ");
     printOrgan(o1);
+}
 
+void shallowanddeep() {
+    Coral c1{"orange"};
+    Coral c2{c1};   // calls shallow copy constructor
+    std::cout << c2 << '\n';
+
+    Trench t1{"mariana trench"};
+    Trench t2{t1};
+    std::cout << t2;
 }
 
 int main(){
-    copyconstructor();
+    shallowanddeep();
     return 0;
 }
 

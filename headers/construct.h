@@ -6,6 +6,7 @@
 #define UNTITLED_CONSTRUCT_H
 
 #include <iostream>
+#include <cstring>
 
 class Skeleton{
 private:
@@ -19,7 +20,6 @@ public:
     }
 
     Skeleton(const Skeleton& skeleton) : m_bones{skeleton.m_bones} {}
-    // converting constructor, a constructor eligible for implicit conversions
 
     friend std::ostream& operator<< (std::ostream &out, const Skeleton &sk);
 
@@ -60,5 +60,75 @@ std::ostream& operator<< (std::ostream &out, const Organ &og) {
 void printOrgan(const Organ& og) {
     std::cout << og << '\n';
 }
+
+class Coral {
+private:
+    std::string m_color;    // fixed memory allocation
+public:
+    explicit Coral(std::string color) : m_color{color} {}
+
+    explicit Coral(const Coral &coral) : m_color{coral.m_color} {};
+    // shallow member copying constructor
+    // the value at member variables address are being copied, no new memory is allocated
+
+    friend std::ostream& operator<< (std::ostream &out, const Coral &coral);
+};
+
+std::ostream& operator<< (std::ostream &out, const Coral &coral) {
+    out << coral.m_color;
+    return out;
+}
+
+class Trench {
+private:
+    char *m_name{};
+    int m_length{};
+public:
+    explicit Trench(const char *name="") {   // dynamic string constructor
+        assert(name);   // prevent empty empty null string
+        m_length = std::strlen(name) + 1;   // +1 includes terminator char
+
+        m_name = new char[m_length];    // new buffer for string
+
+        for (int i = 0; i < m_length; ++i) {
+            m_name[i] = name[i];
+        }
+        m_name[m_length-1] = '\0';  // ensures termination bit included
+    }
+
+    Trench(const Trench& tc) {
+        deepCopy(tc);
+    }
+
+    ~Trench() { // destructor required for dynamic string
+        delete[] m_name;
+    }
+
+    void deepCopy(const Trench& tc);
+
+    friend std::ostream& operator<< (std::ostream &out, const Trench &trench);
+
+};
+
+void Trench::deepCopy(const Trench &tc) {
+    delete[] m_name;    // delete current values
+    m_length = tc.m_length; // shallow copy of fixed memory values
+
+    if (tc.m_name) {    // check if not null pointer
+        m_name = new char[m_length];
+
+        for (int i{ 0 }; i < m_length; ++i)
+            m_name[i] = tc.m_name[i];
+    }
+    else {
+        m_name = nullptr;
+    }
+}
+
+std::ostream& operator<< (std::ostream &out, const Trench &trench) {
+    out << trench.m_name;
+    return out;
+}
+
 
 #endif //UNTITLED_CONSTRUCT_H
