@@ -4,6 +4,7 @@
 #include "headers/aggregation.h"
 #include "headers/overload.h"
 #include "headers/construct.h"
+#include "headers/construct.h"
 
 void composition() {
     std::string p1{"seb"};
@@ -93,8 +94,23 @@ void shallowanddeep() {
     std::cout << t2;
 }
 
+template <typename T>   // template parameter declaration
+T max(const T x, const T y) {   // function template
+    return (x > y) ? x : y;
+}
+
+void simpleTemplate() {
+    std::cout << max<double>(5.0, 5.2) << '\n'; // insert chosen data type inside <>
+
+    BigShop b1{500};
+    BigShop b2{340};
+
+    BigShop biggest = max(b1, b2);
+    std::cout << biggest;
+}
+
 int main(){
-    shallowanddeep();
+    simpleTemplate();
     return 0;
 }
 

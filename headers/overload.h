@@ -149,7 +149,20 @@ private:
 public:
     BigShop(int stock=0) : m_bigstock{stock} {};
 
+    friend bool operator>(const BigShop& b1, const BigShop& b2);
+
+    friend std::ostream& operator<<(std::ostream &out, const BigShop& b1);
+
     operator Shop() const {return Shop(m_bigstock * 10);}   // overloading Shop() object call, implicit casting value
 };
+
+bool operator>(const BigShop& b1, const BigShop& b2) {
+    return (b1.m_bigstock > b2.m_bigstock);
+}
+
+std::ostream &operator<<(std::ostream &out, const BigShop &b1) {
+    out << b1.m_bigstock;
+    return out;
+}
 
 #endif //UNTITLED_OVERLOAD_H
