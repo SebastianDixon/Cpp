@@ -165,4 +165,33 @@ std::ostream &operator<<(std::ostream &out, const BigShop &b1) {
     return out;
 }
 
+class Average{
+private:
+    int m_sum{};
+    int m_seen{};
+public:
+    Average() = default;
+
+    Average(const Average& av) {
+        m_sum = av.m_sum;
+        m_seen = av.m_seen;
+    }
+
+    friend std::ostream& operator<<(std::ostream &out, const Average &av);
+
+    Average& operator+=(int num) {
+        m_sum += num;
+        ++m_seen;
+        return *this;
+    }
+
+};
+
+std::ostream &operator<<(std::ostream &out, const Average &av) {
+    double mean = static_cast<double>(av.m_sum)
+            / static_cast<double>(av.m_seen);
+    out << mean;
+    return out;
+}
+
 #endif //UNTITLED_OVERLOAD_H
