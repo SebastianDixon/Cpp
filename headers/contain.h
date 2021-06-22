@@ -5,6 +5,8 @@
 #ifndef UNTITLED_CONTAIN_H
 #define UNTITLED_CONTAIN_H
 
+#include <iostream>
+
 // container class
 class IntArray{
 private:
@@ -15,7 +17,7 @@ public:
 
     IntArray(int size) : m_size{size} {
         assert(size >= 0);
-        if (length > 0) {
+        if (size > 0) {
             m_data = new int[size]{};
         }
     }
@@ -43,7 +45,7 @@ public:
         erase();
         assert(newsize >= 0);
 
-        if (length = 0)
+        if (newsize = 0)
             return;
         m_data = new int[newsize];
         m_size = newsize;
@@ -61,7 +63,7 @@ public:
         int *data{new int[newsize]};
 
         if (m_size > 0) {
-            int elementsToCopy{ (newLength > m_size) ? m_size : newLength };
+            int elementsToCopy{ (newsize > m_size) ? m_size : newsize };
             // copy the elements one by one
             for (int index{ 0 }; index < elementsToCopy ; ++index)
                 data[index] = m_data[index];
@@ -81,36 +83,50 @@ public:
 
         data[index] = value;
 
-        for (int after{ index }; after < m_length; ++after)
+        for (int after{ index }; after < m_size; ++after)
             data[after+1] = m_data[after];
 
         delete[] m_data;
         m_data = data;
-        ++m_length;
+        ++m_size;
     }
 
     void remove(int index)
     {
-        assert(index >= 0 && index < m_length);
+        assert(index >= 0 && index < m_size);
 
         // If this is the last element in the array, set the array to empty and return
-        if (m_length == 1) {
+        if (m_size == 1) {
             erase();
             return;
         }
 
-        int *data{ new int[m_length-1] };
+        int *data{ new int[m_size-1] };
 
         for (int before{ 0 }; before  < index; ++before)
             data[before] = m_data[before];
 
-        for (int after{ index+1 }; after < m_length; ++after)
+        for (int after{ index+1 }; after < m_size; ++after)
             data[after-1] = m_data[after];
 
         delete[] m_data;
         m_data = data;
-        --m_length;
+        --m_size;
     }
+
+    int getItem(int index) const {
+        return m_data[index];
+    }
+
+    friend std::ostream& operator<<(std::ostream &out, const IntArray &ar);
+
 };
+
+std::ostream &operator<<(std::ostream &out, const IntArray &ar) {
+    for (int i = 0; i < ar.m_size; ++i) {
+        out << ar.getItem(i)  << " ";
+    }
+    return out;
+}
 
 #endif //UNTITLED_CONTAIN_H

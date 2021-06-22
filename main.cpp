@@ -5,6 +5,7 @@
 #include "headers/overload.h"
 #include "headers/construct.h"
 #include "headers/construct.h"
+#include "headers/contain.h"
 
 void composition() {
     std::string p1{"seb"};
@@ -109,8 +110,17 @@ void simpleTemplate() {
     std::cout << biggest;
 }
 
+void DIYarray() {
+    IntArray a1{10};
+    for (int i{ 0 }; i<10; ++i)
+        a1[i] = i+1;
+
+    std::cout << a1;
+}
+
 
 int main(){
+    DIYarray();
     return 0;
 }
 
