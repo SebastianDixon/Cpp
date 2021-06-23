@@ -42,6 +42,8 @@ public:
         return m_data[index];
     }
 
+    IntArray& operator=(const IntArray &ar);
+
     void erase() {
         delete[] m_data;
         m_data = nullptr;
@@ -131,7 +133,20 @@ public:
         return m_data[index];
     }
 
+    void print() {
+        for (int i = 0; i < m_size; ++i) {
+            std::cout << m_data[i] << " ";
+        }
+    }
+
 };
+
+// classes using list assignment constructors should include an overloaded list assignment operator
+IntArray& IntArray::operator=(const IntArray &ar) {
+    m_data = ar.m_data;
+    m_size = ar.m_size;
+    return *this;
+}
 
 
 #endif //UNTITLED_CONTAIN_H

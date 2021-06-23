@@ -110,9 +110,12 @@ void simpleTemplate() {
 }
 
 void DIYarray() {
-    IntArray array{ 5, 4, 3, 2, 1 }; // initializer list
-    for (int count{ 0 }; count < array.getLength(); ++count)
-        std::cout << array[count] << ' ';
+    IntArray a1{ 5, 4, 3, 2, 1 }; // initializer list
+    a1.print();
+    std::cout << '\n';
+    IntArray a2{2, 4, 6, 8};
+    a1 = a2;
+    a1.print();
 }
 
 
