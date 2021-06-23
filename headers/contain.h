@@ -44,6 +44,24 @@ public:
 
     IntArray& operator=(const IntArray &ar);
 
+    IntArray& operator=(std::initializer_list<int> list) {
+        int length{ static_cast<int>(list.size()) };
+
+        if (length != m_size) {
+            delete[] m_data;
+            m_size = length;
+            m_data = new int[length]{};
+        }
+
+        int count{};
+        for (auto element : list) {
+            m_data[count] = element;
+            ++count;
+        }
+
+        return *this;
+    }
+
     void erase() {
         delete[] m_data;
         m_data = nullptr;
