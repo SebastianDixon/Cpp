@@ -4,7 +4,6 @@
 #include "headers/aggregation.h"
 #include "headers/overload.h"
 #include "headers/construct.h"
-#include "headers/construct.h"
 #include "headers/contain.h"
 
 void composition() {
@@ -111,11 +110,9 @@ void simpleTemplate() {
 }
 
 void DIYarray() {
-    IntArray a1{10};
-    for (int i{ 0 }; i<10; ++i)
-        a1[i] = i+1;
-
-    std::cout << a1;
+    IntArray array{ 5, 4, 3, 2, 1 }; // initializer list
+    for (int count{ 0 }; count < array.getLength(); ++count)
+        std::cout << array[count] << ' ';
 }
 
 

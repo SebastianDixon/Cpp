@@ -6,6 +6,8 @@
 #define UNTITLED_CONTAIN_H
 
 #include <iostream>
+#include <initializer_list>
+#include <cassert>
 
 // container class
 class IntArray{
@@ -15,10 +17,19 @@ private:
 public:
     IntArray() = default;
 
-    IntArray(int size) : m_size{size} {
+    explicit IntArray(int size) : m_size{size} {
         assert(size >= 0);
         if (size > 0) {
             m_data = new int[size]{};
+        }
+    }
+
+    IntArray(std::initializer_list<int> list)
+    : IntArray(static_cast<int>(list.size())) {
+        int count{};
+        for (auto item:list) {
+            m_data[count] = item;
+            ++count;
         }
     }
 
@@ -40,6 +51,8 @@ public:
     int size() const {
         return m_size;
     }
+
+    int getLength() const { return m_size; }
 
     void reallocate(int newsize) {
         erase();
@@ -118,15 +131,7 @@ public:
         return m_data[index];
     }
 
-    friend std::ostream& operator<<(std::ostream &out, const IntArray &ar);
-
 };
 
-std::ostream &operator<<(std::ostream &out, const IntArray &ar) {
-    for (int i = 0; i < ar.m_size; ++i) {
-        out << ar.getItem(i)  << " ";
-    }
-    return out;
-}
 
 #endif //UNTITLED_CONTAIN_H
