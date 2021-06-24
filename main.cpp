@@ -5,6 +5,7 @@
 #include "headers/overload.h"
 #include "headers/construct.h"
 #include "headers/contain.h"
+#include "headers/inherit.h"
 
 void composition() {
     std::string p1{"seb"};
@@ -123,9 +124,18 @@ void DIYarray() {
     a2.print();
 }
 
+void inherited() {
+    Person p1{"bill", 50, MALE};
+
+    Athlete a1{"alice", 20, FEMALE, "tennis", 55};
+    (a1.get_sex()) ? (std::cout << "female\n") : (std::cout << "male\n");
+    std::cout << a1.get_sport() << '\n';
+
+    ParaAthlete pa1{"phil", 30, MALE, "running", 78, "blind"};
+}
 
 int main(){
-    DIYarray();
+    inherited();
     return 0;
 }
 
