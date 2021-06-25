@@ -66,4 +66,51 @@ public:
                 : Athlete(name, age, sex, sport, weight), m_disability{dis} {}
 };
 
+class Base {
+private:
+    int m_private;
+protected:
+    int m_protect;
+public:
+    int m_public;
+
+    Base(int priv, int protec, int pub)
+    : m_private{priv}, m_protect{protec}, m_public{pub} {}
+
+    int get_private() const {
+        return m_private;
+    }
+
+    int get_protected() const {
+        return m_protect;
+    }
+
+    int get_public() const {
+        return m_public;
+    }
+};
+
+class Derived : public Base {
+public:
+    Derived(int priv, int protec, int pub) : Base(priv, protec, pub) {}
+
+    void view_members() {
+        std::cout << get_private() << '\n'; // private member accessed using getter function
+        std::cout << m_protect << '\n'; // protected member directly accessed given public inheritance
+        std::cout << m_public << '\n'; // public member always directly accessible
+    }
+};
+
+class PrivateDerived : private Base {
+public:
+    PrivateDerived(int priv, int protec, int pub) : Base(priv, protec, pub) {}
+
+    void view_members() {
+        std::cout << get_private() << '\n'; // all non-private member functions now private
+        std::cout << get_protected() << '\n'; // protected member inside Base now private member variable
+        std::cout << get_public() << '\n'; // public member inside Base now private member variable
+    }
+
+};
+
 #endif //UNTITLED_INHERIT_H
