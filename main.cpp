@@ -132,6 +132,21 @@ void inherited() {
     std::cout << a1.get_sport() << '\n';
 
     ParaAthlete pa1{"phil", 30, MALE, "running", 78, "blind"};
+
+    Base b1{1, 2, 3};
+    Derived d1{4, 5, 6};
+    b1.identify();
+    b1.chain();
+
+    d1.identify();
+    d1.chain();
+
+    Parent parent1{5};
+    Child child1{parent1};
+
+    std::cout << parent1 << '\n';
+    std::cout << child1 << '\n';
+
 }
 
 int main(){

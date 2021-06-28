@@ -6,6 +6,7 @@
 #define UNTITLED_INHERIT_H
 
 #include <string>
+#include <iostream>
 
 enum Sex{
     MALE,
@@ -88,6 +89,15 @@ public:
     int get_public() const {
         return m_public;
     }
+
+    void identify() {
+        std::cout << "I am Base class\n";
+    }
+
+    void chain() {
+        std::cout << "Base class call\n";
+    }
+
 };
 
 class Derived : public Base {
@@ -98,6 +108,15 @@ public:
         std::cout << get_private() << '\n'; // private member accessed using getter function
         std::cout << m_protect << '\n'; // protected member directly accessed given public inheritance
         std::cout << m_public << '\n'; // public member always directly accessible
+    }
+
+    void identify() {   // overrides base class member function
+        std::cout << "I am Derived class\n";
+    }
+
+    void chain() {
+        Base::chain();  // call to base class member function to add functionality
+        std::cout << "Derived class call\n";
     }
 };
 
@@ -112,5 +131,33 @@ public:
     }
 
 };
+
+class Parent{
+private:
+    int m_value;
+public:
+    Parent(int val) : m_value{val} {}
+
+    Parent(const Parent& pt) : Parent(pt.m_value) {}
+
+    friend std::ostream& operator<<(std::ostream& out, const Parent &pt) {
+        out << pt.m_value;
+        return out;
+    }
+};
+
+class Child : private Parent{
+public:
+    Child(int val) : Parent(val) {}
+
+    Child(const Parent& pt) : Parent(pt) {}
+
+    friend std::ostream& operator<<(std::ostream& out, const Child &ch) {
+        out << static_cast<const Parent&>(ch);  // overriden operator using static cast
+        return out;
+    }
+};
+
+
 
 #endif //UNTITLED_INHERIT_H
