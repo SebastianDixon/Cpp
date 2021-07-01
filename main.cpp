@@ -147,6 +147,13 @@ void inherited() {
     std::cout << parent1 << '\n';
     std::cout << child1 << '\n';
 
+    Father f1{"fred"};
+    Mother m1{"mary"};
+    Son s1{"sebastian", f1, m1};
+
+    std::cout << s1.get_mother() << '\n';
+    std::cout << s1.get_father() << '\n';
+    std::cout << s1.get_son() << '\n';
 }
 
 int main(){

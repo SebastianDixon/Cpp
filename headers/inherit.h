@@ -144,6 +144,10 @@ public:
         out << pt.m_value;
         return out;
     }
+protected:
+    void print() {
+        std::cout << m_value;
+    }
 };
 
 class Child : private Parent{
@@ -153,8 +157,58 @@ public:
     Child(const Parent& pt) : Parent(pt) {}
 
     friend std::ostream& operator<<(std::ostream& out, const Child &ch) {
-        out << static_cast<const Parent&>(ch);  // overriden operator using static cast
+        out << static_cast<const Parent&>(ch);  // overridden operator using static cast
         return out;
+    }
+
+    using Parent::print;
+    // using keyword changes access specifier of inherited member variable to current access region
+};
+
+class Father{
+private:
+    std::string m_name{};
+public:
+    explicit Father(std::string name = "Father") : m_name{name} {}
+
+    Father(const Father &father) {
+        m_name = father.m_name;
+    }
+
+    std::string get_father() {
+        return m_name;
+    }
+};
+
+class Mother{
+private:
+    std::string m_name{};
+public:
+    explicit Mother(std::string name = "Mother") : m_name{name} {}
+
+    Mother(const Mother& mother) {
+        m_name = mother.m_name;
+    }
+
+    std::string get_mother() {
+        return m_name;
+    }
+};
+
+class Son : public Father, public Mother {  // multiple inheritance, avoid unless best solution
+private:
+    std::string m_name{};
+public:
+    Son(std::string name) : m_name{name} {}
+
+    Son(std::string name, std::string father, std::string mother)
+    : m_name{name}, Father{father}, Mother{mother} {}
+
+    Son(std::string name, const Father &father, const Mother &mother)
+    : m_name{name}, Father{father}, Mother{mother} {}
+
+    std::string get_son() {
+        return m_name;
     }
 };
 
