@@ -6,6 +6,7 @@
 #include "headers/construct.h"
 #include "headers/contain.h"
 #include "headers/inherit.h"
+#include "headers/coursera.h"
 
 void composition() {
     std::string p1{"seb"};
@@ -156,8 +157,17 @@ void inherited() {
     std::cout << s1.get_son() << '\n';
 }
 
+void courseraproject() {
+    Employee e1{"temporary"};
+    e1.input_name("new name");
+    std::cout << e1 << '\n';
+
+    Account a1{"newaccount", 100, 1000};
+    std::cout << a1;
+}
+
 int main(){
-    inherited();
+    courseraproject();
     return 0;
 }
 
